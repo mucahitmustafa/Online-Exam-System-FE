@@ -1,0 +1,27 @@
+{
+  "name": "online-exam-system-fe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mucahitmustafa/OnlineExamSystem-FE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mucahitmustafa/OnlineExamSystem-FE/issues"
+  },
+  "homepage": "https://github.com/mucahitmustafa/OnlineExamSystem-FE#readme",
+  "dependencies": {
+    "backbone": "^1.4.1",
+    "bootstrap": "^5.2.3",
+    "jquery": "^3.6.1",
+    "requirejs": "^2.3.6",
+    "underscore": "^1.13.6"
+  }
+}

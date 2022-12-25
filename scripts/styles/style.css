@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 200px 200px 200px 200px;
+    background: white;
+}
+
+.card-container {
+    margin: 50px;
+    background: #231e39;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
+    color: #b3b8cd;
+    text-align: center;
+    width: auto;
+    padding: 20px;
+
+}
+
+.round {
+    border: 1px solid #03bfcb;
+    border-radius: 50%;
+    padding: 7px;
+
+}
+
+.name-container {
+    margin: 10px 0;
+}
+
+.menu {
+    background-color: #9062a3;
+}
+
+.detail-btn {
+    background-color: #40204e;
+    padding: 5px;
+    color: #c3a8ce;
+}
+
+#add-btn {
+    background-color: #c3a8ce;
+    padding: 5px;
+}
+
+h2 {
+    color: #40204e;
+    padding: 5px;
+}
+
+#delete-btn {
+    background-color: #af9eb6;
+    padding: 5px;
+    color: #492b55;
+}
+
+#detail-btn {
+    background-color: #af9eb6;
+    padding: 5px;
+    color: #492b55;    
+}
+
+#detailHeader {
+    color: #442052;
+}
+
+#edit-btn {
+    background-color: #af9eb6;
+    padding: 5px;
+    color: #492b55; 
+}
+
+#editHeader {
+    color: #442052;
+}
+
+#save-btn {
+    background-color: #af9eb6;
+    padding: 5px;
+    color: #492b55;
+}
+
+#show-btn {
+    background-color: #af9eb6;
+    padding: 5px;
+    color: #492b55;
+}
+
+#find-btn {
+    background-color: #af9eb6;
+    padding: 5px;
+    color: #492b55;    
+}
