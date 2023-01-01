@@ -1,11 +1,11 @@
 define([
-    './baseModel'
+    './baseModel', 'properties'
 ], function(
-    BaseModel
+    BaseModel, Properties
 ) {
     var StudentGroupModel = BaseModel.extend({
 
-        urlRoot: '/api/studentGroups/',
+        urlRoot: Properties.APIAddress + '/studentGroups/',
         set: function(key, val, options) {
              return Backbone.Model.prototype.set.apply(this, [key, val, options]);
         },

@@ -1,13 +1,13 @@
 define([
-    'backbone', 'models/studentGroupModel'
+    'backbone', 'properties', 'models/studentGroupModel'
 ], function(
-    Backbone, StudentGroupModel
+    Backbone, Properties, StudentGroupModel
 ) {
     var StudentGroupCollection = Backbone.Collection.extend({
 
         model: StudentGroupModel,
 
-        url: '/api/studentGroups/',
+        url: Properties.APIAddress + '/studentGroups/',
 
         parse: function(response) {
             return response.content;

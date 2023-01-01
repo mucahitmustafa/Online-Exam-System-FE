@@ -1,9 +1,9 @@
 define([
-    'collections/pageable', 'models/studentGroupModel'
-], function(PageableCollection, StudentGroupModel) {
+    'collections/pageable', 'properties', 'models/studentGroupModel'
+], function(PageableCollection, Properties, StudentGroupModel) {
     var StudentGroupsPageableCollection = PageableCollection.extend({
         model: StudentGroupModel,
-        url: "/api/studentGroups"
+        url: Properties.APIAddress + "/studentGroups/"
 
     });
     return StudentGroupsPageableCollection;

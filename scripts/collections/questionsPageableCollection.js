@@ -1,9 +1,9 @@
 define([
-    'collections/pageable', 'models/questionModel'
-], function(PageableCollection, QuestionModel) {
+    'collections/pageable', 'properties', 'models/questionModel'
+], function(PageableCollection, Properties, QuestionModel) {
     var QuestionsPageableCollection = PageableCollection.extend({
         model: QuestionModel,
-        url: "/api/questions"
+        url: Properties.APIAddress + "/questions/"
 
     });
     return QuestionsPageableCollection;

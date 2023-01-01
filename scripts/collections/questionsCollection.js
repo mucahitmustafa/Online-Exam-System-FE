@@ -1,13 +1,13 @@
 define([
-    'backbone', 'models/questionModel'
+    'backbone', 'properties', 'models/questionModel'
 ], function(
-    Backbone, QuestionModel
+    Backbone, Properties, QuestionModel
 ) {
     var QuestionCollection = Backbone.Collection.extend({
 
         model: QuestionModel,
 
-        url: '/api/questions/',
+        url: Properties.APIAddress + '/questions/',
 
         parse: function(response) {
             return response.content;

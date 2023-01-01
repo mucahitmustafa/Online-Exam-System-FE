@@ -1,13 +1,13 @@
 define([
-    'backbone', 'models/examLoginModel'
+    'backbone', 'properties', 'models/examLoginModel'
 ], function(
-    Backbone, ExamLoginModel
+    Backbone, Properties, ExamLoginModel
 ) {
     var ExamLoginCollection = Backbone.Collection.extend({
 
         model: ExamLoginModel,
 
-        url: '/api/examLogins/',
+        url: Properties.APIAddress + '/examLogins/',
 
         parse: function(response) {
             return response.content;
