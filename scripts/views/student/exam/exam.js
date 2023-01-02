@@ -2,13 +2,13 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!./home.html',
     'properties',
-    '../examList/listItem'
+    'text!./exam.html',
+    './question'
 ],
-function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
+function($, _, Backbone, Properties, ExamTemplate, QuestionView) {
 
-    var StudentHomeView = Backbone.View.extend({
+    var ExamView = Backbone.View.extend({
 
         el: '.container',
         model: undefined,
@@ -17,15 +17,15 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
         },
 
         initialize: function () {
-            console.log("StudentHomeView is being initialized...");
-            this.template = _.template(StudentHomeTemplate);
+            console.log("ExamView is being initialized...", this.model);
+            this.template = _.template(ExamTemplate);
             this.render();
         },
 
         render: function () {
             this.$el.html(this.template(this.model));
 
-            fetch(Properties.APIAddress + '/exams/byStudent/' + this.model.id, {
+            fetch(Properties.APIAddress + '/questions/byExam/' + this.model.id, {
                 async: false,
                 method: 'GET',
                 headers: {
@@ -33,14 +33,14 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
                   'Content-Type': 'application/json'
                 }
             }).then(response => response.json()).then(function(response) {
-                response.map(exam => {
-                    var examListItemView = new ExamListItemView({ model: exam });
-                    $('.list-exams').append(examListItemView.render().$el);
+                response.map(question => {
+                    var questionView = new QuestionView({ model: question });
+                    $('.list-questions').append(questionView.render().$el);
                 });
             });
-        }
 
+        }
     });
 
-    return StudentHomeView;
+    return ExamView;
 });

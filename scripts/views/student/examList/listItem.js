@@ -2,9 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!./listItem.html'
+    'text!./listItem.html',
+    '../exam/exam'
 ],
-function($, _, Backbone, ExamListItemTemplate) {
+function($, _, Backbone, ExamListItemTemplate, ExamView) {
 
     var ExamListItemView = Backbone.View.extend({
 
@@ -26,8 +27,7 @@ function($, _, Backbone, ExamListItemTemplate) {
         },
 
         loginExam: function(e) {
-            console.info("Login to exam ", this.model.id);
-
+            new ExamView({model: this.model});
         }
     });
 
