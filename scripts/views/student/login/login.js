@@ -17,7 +17,6 @@ function($, _, Backbone, StudentLoginTemplate, Properties, StudentHomeView) {
         },
 
         initialize: function () {
-            console.log("StudentLoginView is being initialized...");
             this.render();
         },
 

@@ -16,7 +16,6 @@ function($, _, Backbone, ExamListItemTemplate, ExamView) {
         },
 
         initialize: function () {
-            console.log("ExamListItemView is being initialized...", this.model);
             this.template = _.template(ExamListItemTemplate);
             this.render();
         },

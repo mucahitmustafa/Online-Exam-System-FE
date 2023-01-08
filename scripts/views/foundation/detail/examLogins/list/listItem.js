@@ -2,11 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!./question.html'
+    'text!./listItem.html'
 ],
-function($, _, Backbone, QuestionTemplate) {
+function($, _, Backbone, ExamLoginListItemTemplate) {
 
-    var QuestionView = Backbone.View.extend({
+    var ExamLoginListItemView = Backbone.View.extend({
 
         model: undefined,
         tagName: 'li',
@@ -14,7 +14,7 @@ function($, _, Backbone, QuestionTemplate) {
         },
 
         initialize: function () {
-            this.template = _.template(QuestionTemplate);
+            this.template = _.template(ExamLoginListItemTemplate);
             this.render();
         },
 
@@ -24,5 +24,5 @@ function($, _, Backbone, QuestionTemplate) {
         }
     });
 
-    return QuestionView;
+    return ExamLoginListItemView;
 });

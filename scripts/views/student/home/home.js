@@ -17,7 +17,6 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
         },
 
         initialize: function () {
-            console.log("StudentHomeView is being initialized...");
             this.template = _.template(StudentHomeTemplate);
             this.render();
         },

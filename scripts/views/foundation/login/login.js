@@ -17,7 +17,6 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
         },
 
         initialize: function () {
-            console.log("FoundationLoginView is being initialized...");
             this.render();
         },
 
@@ -31,7 +30,7 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
 
             var onSuccessHandler = function(collection, response, options) {
                 console.log("API Key is valid. Foundation name is '", foundationModel.attributes.name, "'");
-                new FoundationDetailView({model: foundationModel}).render();
+                new FoundationDetailView({model: foundationModel, apiKey: apiKey}).render();
             };
           
             var onErrorHandler = function(collection, response, options) {

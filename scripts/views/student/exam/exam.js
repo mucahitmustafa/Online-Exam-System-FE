@@ -17,7 +17,6 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView) {
         },
 
         initialize: function () {
-            console.log("ExamView is being initialized...", this.model);
             this.template = _.template(ExamTemplate);
             this.render();
         },
