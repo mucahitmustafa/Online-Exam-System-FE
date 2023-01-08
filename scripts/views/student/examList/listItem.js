@@ -15,8 +15,10 @@ function($, _, Backbone, ExamListItemTemplate, ExamView) {
             "click #btn-examLogin": "loginExam"
         },
 
-        initialize: function () {
+        initialize: function (options) {
             this.template = _.template(ExamListItemTemplate);
+            this.model = options.model;
+            this.studentModel = options.studentModel;
             this.render();
         },
 
@@ -26,7 +28,7 @@ function($, _, Backbone, ExamListItemTemplate, ExamView) {
         },
 
         loginExam: function(e) {
-            new ExamView({model: this.model});
+            new ExamView({model: this.model, studentModel: this.studentModel});
         }
     });
 

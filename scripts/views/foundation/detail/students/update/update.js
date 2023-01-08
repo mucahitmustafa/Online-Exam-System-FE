@@ -26,7 +26,6 @@ function($, _, Backbone, Properties, StudentUpdateTemplate, StudentsPanelView) {
         },
 
         render: function () {
-            console.error(this.model);
             this.$el.html(this.template(this.model));
             return this;
         },

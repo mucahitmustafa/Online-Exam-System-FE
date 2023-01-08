@@ -1,5 +1,18 @@
-<h2>id <%= id %></h2>
-<h2>examId <%= examId %></h2>
-<h2>text <%= text %></h2>
-<h2>answers <%= answers %></h2>
-<h2>correctAnswerIndex <%= correctAnswerIndex %></h2>
+<div>
+<h2><%= text %></h2>
+
+<input type="radio" id="q<%= id %>AnswerA" name="q<%= id %>Answers" value="A">
+<label for="q<%= id %>AnswerA"><%= answers[0] %></label><br>
+
+<input type="radio" id="q<%= id %>AnswerB" name="q<%= id %>Answers" value="B">
+<label for="q<%= id %>AnswerB"><%= answers[1] %></label><br>
+
+
+<input type="radio" id="q<%= id %>AnswerC" name="q<%= id %>Answers" value="C">
+<label for="q<%= id %>AnswerC"><%= answers[2] %></label><br>
+
+
+<input type="radio" id="q<%= id %>AnswerD" name="q<%= id %>Answers" value="D">
+<label for="q<%= id %>AnswerD"><%= answers[3] %></label><br>
+
+</div>

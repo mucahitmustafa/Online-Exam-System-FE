@@ -23,7 +23,7 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
 
         render: function () {
             this.$el.html(this.template(this.model));
-
+            var self = this;
             fetch(Properties.APIAddress + '/exams/byStudent/' + this.model.id, {
                 async: false,
                 method: 'GET',
@@ -33,7 +33,7 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
                 }
             }).then(response => response.json()).then(function(response) {
                 response.map(exam => {
-                    var examListItemView = new ExamListItemView({ model: exam });
+                    var examListItemView = new ExamListItemView({ model: exam, studentModel: self.model});
                     $('.list-exams').append(examListItemView.render().$el);
                 });
             });

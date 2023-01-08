@@ -89,7 +89,6 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, ExamsPanelView) {
             var name = $('#txt-name').val();
             var startDate = $('#txt-startDate').val();
             var endDate = $('#txt-endDate').val();
-            var duration = $('#txt-duration').val();
 
             var q1text = $('#txt-question1').val();
             var q2text = $('#txt-question2').val();
@@ -144,7 +143,7 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, ExamsPanelView) {
                   'Content-Type': 'application/json',
                   'api-key': this.apiKey
                 },
-                body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'duration': duration, 'questions': questions})
+                body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'questions': questions})
             }).then(this.backExamPanel());
         },
 

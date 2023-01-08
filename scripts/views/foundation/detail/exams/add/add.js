@@ -32,7 +32,6 @@ function($, _, Backbone, Properties, ExamAddTemplate, ExamsPanelView) {
             var name = $('#txt-name').val();
             var startDate = $('#txt-startDate').val();
             var endDate = $('#txt-endDate').val();
-            var duration = $('#txt-duration').val();
 
             fetch(Properties.APIAddress + '/exams/', {
                 async: false,
@@ -42,7 +41,7 @@ function($, _, Backbone, Properties, ExamAddTemplate, ExamsPanelView) {
                   'Content-Type': 'application/json',
                   'api-key': this.apiKey
                 },
-                body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'duration': duration, 'questions': []})
+                body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'questions': []})
             }).then(openEditExamPage());
         },
 

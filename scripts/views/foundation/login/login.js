@@ -34,7 +34,6 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
             };
           
             var onErrorHandler = function(collection, response, options) {
-                console.error('Invalid API key tried!');
                 alert("Invalid API Key!");
             };
 
