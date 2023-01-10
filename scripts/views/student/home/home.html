@@ -1,11 +1,19 @@
-<!-- Main content -->
-<div class="main-content" >
-    <h3>Student Home</h3>
-    <h2>id <%= id %></h2>
-    <h2>number <%= number %></h2>
-    <h2>name <%= name %></h2>
-    <h2>mail <%= mail %></h2>
+<div class="main-content">
+    <h2 style="text-align: right;">Hi, <%= name %> (<%= number %>)</h2>
 
-    <ul class="list-exams"></ul>
-
+    <div class="row" style="margin-left: 50px;">
+        <h3>Exams you can take:</h3>
+        <table class="table col-xl-8 col-lg-8 col-md-8">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody class="list-exams">
+            </tbody>
+          </table>
+    </div>
 </div>

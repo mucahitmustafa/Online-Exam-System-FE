@@ -10,7 +10,7 @@ function($, _, Backbone, ExamListItemTemplate, ExamView) {
     var ExamListItemView = Backbone.View.extend({
 
         model: undefined,
-        tagName: 'li',
+        tagName: 'tr',
         events: {
             "click #btn-examLogin": "loginExam"
         },
