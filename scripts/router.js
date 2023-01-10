@@ -24,12 +24,10 @@ function(
         var appRouter = new AppRouter();
 
         appRouter.on('route:studentLogin', function () {
-            console.log("Router --> studentLogin");
             new StudentLoginView();
         });
 
         appRouter.on('route:foundationLogin', function () {
-            console.log("Router --> foundationLogin");
             new FoundationLoginView();
         });
 

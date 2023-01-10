@@ -15,7 +15,6 @@ function($, _, Backbone, QuestionTemplate) {
 
         initialize: function () {
             this.template = _.template(QuestionTemplate);
-            this.render();
         },
 
         render: function () {

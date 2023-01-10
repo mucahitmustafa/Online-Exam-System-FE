@@ -1,12 +1,11 @@
 <!-- Main content -->
-<div class="main-content" >
-    <h2>Exam <%= name %></h2>
-    <h2>Start Date: <%= startDate %></h2>
-    <h2>End Date: <%= endDate %></h2>
+<div class="main-content" style="text-align: center; width: 100%;" >
+    <h3 style="text-align: right;">'<%= name %>' Exam</h3>
+
+    <div style="display: inline-block;">
+        <ul class="list-questions"></ul>
+        <button class="btn" style="margin-top: 50px; background-color: #FFC93C;" type="button" id="btn-endExam">Complete Exam</button>
+    </div>
 
 
-    <h3>Questions:</h3>
-    <ul class="list-questions"></ul>
-
-    <button class="btn btn-outline-secondary" type="button" id="btn-endExam">Complete Exam</button>
 </div>

@@ -11,7 +11,6 @@ define([
         },
 
         validate: function(attributes, options) {
-            console.log("[FoundationModel]:: validate -> attributes is %O ", attributes);
             var errors = [];
 
             return errors.length > 0 ? errors : options.validate = false;

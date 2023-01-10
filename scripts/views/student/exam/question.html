@@ -1,18 +1,16 @@
-<div>
-<h2><%= text %></h2>
+<div style="margin-top:40px;">
+    <h5>Q: <%= text %></h5>
 
-<input type="radio" id="q<%= id %>AnswerA" name="q<%= id %>Answers" value="A">
-<label for="q<%= id %>AnswerA"><%= answers[0] %></label><br>
+    <input class="form-check-input" type="radio" id="q<%= id %>AnswerA" name="q<%= id %>Answers" value="A">
+    <label class="form-check-label" for="q<%= id %>AnswerA" style="margin-right: 10px;"><%= answers[0] %></label>
 
-<input type="radio" id="q<%= id %>AnswerB" name="q<%= id %>Answers" value="B">
-<label for="q<%= id %>AnswerB"><%= answers[1] %></label><br>
+    <input class="form-check-input" type="radio" id="q<%= id %>AnswerB" name="q<%= id %>Answers" value="B">
+    <label class="form-check-label" for="q<%= id %>AnswerB" style="margin-right: 10px;"><%= answers[1] %></label>
 
+    <input class="form-check-input" type="radio" id="q<%= id %>AnswerC" name="q<%= id %>Answers" value="C">
+    <label class="form-check-label" for="q<%= id %>AnswerC" style="margin-right: 10px;"><%= answers[2] %></label>
 
-<input type="radio" id="q<%= id %>AnswerC" name="q<%= id %>Answers" value="C">
-<label for="q<%= id %>AnswerC"><%= answers[2] %></label><br>
-
-
-<input type="radio" id="q<%= id %>AnswerD" name="q<%= id %>Answers" value="D">
-<label for="q<%= id %>AnswerD"><%= answers[3] %></label><br>
-
+    <input class="form-check-input" type="radio" id="q<%= id %>AnswerD" name="q<%= id %>Answers" value="D">
+    <label class="form-check-label" for="q<%= id %>AnswerD" style="margin-right: 10px;"><%= answers[3] %></label>
+    
 </div>

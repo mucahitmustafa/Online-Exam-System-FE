@@ -4,9 +4,10 @@ define([
     'backbone',
     'properties',
     'text!./exam.html',
-    './question'
+    './question',
+    '../home/home'
 ],
-function($, _, Backbone, Properties, ExamTemplate, QuestionView) {
+function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView) {
 
     var ExamView = Backbone.View.extend({
 
@@ -38,6 +39,7 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView) {
             }).then(response => response.json()).then(function(response) {
                 response.map(question => {
                     self.questions.push(question.id);
+                    question.answers = question.answers[0].split(',');
                     var questionView = new QuestionView({ model: question });
                     $('.list-questions').append(questionView.render().$el);
                 });
@@ -48,7 +50,8 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView) {
         endExam: function(e) {
             var answers = "";
             this.questions.forEach(qid => {
-                answers += document.querySelector('input[name="q' + qid + 'Answers"]:checked').value + ",";
+                var _answer = document.querySelector('input[name="q' + qid + 'Answers"]:checked');
+                answers += (_answer ? _answer.value : '#') + ",";
             });
             answers = answers.substring(0, answers.length - 1);
 
@@ -65,7 +68,7 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView) {
         },
 
         backToHome: function() {
-            new StudentHomeView({model: this.studentModel});
+            new StudentHomeView({model: this.studentModel});  // TODO: throwing error!
         }
     });
 
