@@ -22,9 +22,11 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
 
         render: function () {
             this.$el.html(_.template(FoundationLoginTemplate, {} ));
+            $('#alert-foundationLoginError').hide();
         },
 
         loginFoundation: function(e) {
+            $('#alert-foundationLoginError').hide();
             var apiKey = $('#txt-apiKey').val();
             var foundationModel = new FoundationModel();
 
@@ -34,7 +36,7 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
             };
           
             var onErrorHandler = function(collection, response, options) {
-                alert("Invalid API Key!");
+                $('#alert-foundationLoginError').show();
             };
 
             foundationModel.fetch({

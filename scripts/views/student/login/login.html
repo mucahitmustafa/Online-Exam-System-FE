@@ -1,10 +1,12 @@
-<!-- Main content -->
 <div class="main-content" style="display: flex; justify-content: center; align-items: center; text-align: center; min-height: 100vh; margin-top: -75px;">
     <div class="col-md-4 col-lg-4 col-xl-4">
         <h3>Student Login</h3>
-         
-        <input type="text" class="form-control" placeholder="Mail" aria-label="Mail" id="txt-mail" value="abc@foundationX.com" style="margin-top: 10px;">
-        <input type="text" class="form-control" placeholder="Password" aria-label="Password" id="txt-pass" value="123" style="margin-top: 10px;">
+        <div id="alert-studentLoginError" class="alert alert-danger" role="alert">
+            Username or password is not valid!
+        </div>
+          
+        <input type="text" class="form-control" placeholder="Mail" aria-label="Mail" id="txt-mail" value="" style="margin-top: 10px;">
+        <input type="text" class="form-control" placeholder="Password" aria-label="Password" id="txt-pass" value="" style="margin-top: 10px;">
         <button class="btn btn-outline-secondary" type="button" id="btn-studentLogin" style="margin-top: 20px;">Login</button>
     </div>
     

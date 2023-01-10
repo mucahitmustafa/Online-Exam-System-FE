@@ -22,9 +22,11 @@ function($, _, Backbone, StudentLoginTemplate, Properties, StudentHomeView) {
 
         render: function () {
             this.$el.html(_.template(StudentLoginTemplate, {} ));
+            $('#alert-studentLoginError').hide();
         },
 
         loginStudent: function(e) {
+            $('#alert-studentLoginError').hide();
             var mail = $('#txt-mail').val();
             var password = $('#txt-pass').val();
 
@@ -38,7 +40,7 @@ function($, _, Backbone, StudentLoginTemplate, Properties, StudentHomeView) {
                 body: JSON.stringify({'mail': mail, 'password': password})
             }).then(response => response.json()).then(function(response) {
                 if (response.error) {
-                    alert("Wrong username or password!");
+                    $('#alert-studentLoginError').show();
                 } else {
                     new StudentHomeView({model: response});
                 }
