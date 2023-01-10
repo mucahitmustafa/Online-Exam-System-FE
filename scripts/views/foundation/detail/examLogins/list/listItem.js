@@ -9,7 +9,7 @@ function($, _, Backbone, ExamLoginListItemTemplate) {
     var ExamLoginListItemView = Backbone.View.extend({
 
         model: undefined,
-        tagName: 'li',
+        tagName: 'tr',
         events: {
         },
 

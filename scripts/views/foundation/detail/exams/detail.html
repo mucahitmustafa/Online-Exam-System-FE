@@ -1,7 +1,21 @@
-<!-- Main content -->
-<div class="main-content" >
-    <h3>Exams</h3>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-3 col-lg-3 col-xl-3"><h4>Exams</h4></div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <button class="btn" style="background-color: #FFC93C;" type="button" id="btn-newExam">Add New Exam</button>
+        </div>
+    </div>
 
-    <button class="btn btn-outline-secondary" type="button" id="btn-newExam">Add Exam</button>
-    <ul class="list-exams"></ul>
+    <table class="table col-xl-8 col-lg-8 col-md-8">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="list-exams">
+        </tbody>
+     </table>
 </div>

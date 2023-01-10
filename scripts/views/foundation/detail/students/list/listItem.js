@@ -12,7 +12,7 @@ function($, _, Backbone, Properties, StudentListItemTemplate, UpdateStudentView)
 
         model: undefined,
         apiKey: undefined,
-        tagName: 'li',
+        tagName: 'tr',
         events: {
             "click #btn-editStudent": "editStudent",
             "click #btn-deleteStudent": "deleteStudent"
