@@ -16,9 +16,9 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
 
         },
 
-        initialize: function () {
+        initialize: function (options) {
             this.template = _.template(StudentHomeTemplate);
-            this.render();
+            return this;
         },
 
         render: function () {
@@ -37,6 +37,7 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
                     $('.list-exams').append(examListItemView.render().$el);
                 });
             });
+            return this;
         }
 
     });

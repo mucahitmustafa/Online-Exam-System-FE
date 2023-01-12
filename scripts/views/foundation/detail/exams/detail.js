@@ -19,6 +19,8 @@ function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView, ExamA
         initialize: function (options) {
             this.template = _.template(ExamsPanelTemplate);
             this.apiKey = options.apiKey;
+            this.foundationModel = options.foundationModel;
+            return this;
         },
 
         render: function () {
@@ -35,7 +37,7 @@ function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView, ExamA
                 }
             }).then(response => response.json()).then(function(response) {
                 response.content.map(exam => {
-                    var examListItemView = new ExamListItemView({ model: exam, apiKey: self.apiKey });
+                    var examListItemView = new ExamListItemView({ model: exam, apiKey: self.apiKey, foundationModel: self.foundationModel });
                     $('.list-exams').append(examListItemView.render().$el);
                 });
             });
@@ -44,7 +46,8 @@ function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView, ExamA
         },
 
         newExam: function(e) {
-            new ExamAddView({apiKey: this.apiKey});
+            var examAddView = new ExamAddView({apiKey: this.apiKey, foundationModel: this.foundationModel});
+            examAddView.render();
         }
 
     });

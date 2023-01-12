@@ -17,12 +17,15 @@ function($, _, Backbone, StudentLoginTemplate, Properties, StudentHomeView) {
         },
 
         initialize: function () {
-            this.render();
+            this.template = _.template(StudentLoginTemplate);
+            return this;
         },
 
         render: function () {
-            this.$el.html(_.template(StudentLoginTemplate, {} ));
+            this.$el.html(this.template());
+
             $('#alert-studentLoginError').hide();
+            return this;
         },
 
         loginStudent: function(e) {
@@ -42,7 +45,8 @@ function($, _, Backbone, StudentLoginTemplate, Properties, StudentHomeView) {
                 if (response.error) {
                     $('#alert-studentLoginError').show();
                 } else {
-                    new StudentHomeView({model: response});
+                    var homeView = new StudentHomeView({model: response});
+                    homeView.render();
                 }
             })
         

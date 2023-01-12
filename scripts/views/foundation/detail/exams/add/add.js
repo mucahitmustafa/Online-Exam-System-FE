@@ -4,9 +4,10 @@ define([
     'backbone',
     'properties',
     'text!./add.html',
-    '../detail'
+    'views/foundation/detail/detail',
+    '../update/update'
 ],
-function($, _, Backbone, Properties, ExamAddTemplate, ExamsPanelView) {
+function($, _, Backbone, Properties, ExamAddTemplate, FoundationDetailView, UpdateExamView) {
 
     var ExamAddView = Backbone.View.extend({
 
@@ -14,13 +15,14 @@ function($, _, Backbone, Properties, ExamAddTemplate, ExamsPanelView) {
         apiKey: undefined,
         events: {
             "click #btn-saveExam": "saveExam",
-            "click #btn-backExamPanel": "backExamPanel",
+            "click #btn-backToHome": "backToHome",
         },
 
         initialize: function (options) {
             this.template = _.template(ExamAddTemplate);
             this.apiKey = options.apiKey;
-            this.render();
+            this.foundationModel = options.foundationModel;
+            return this;
         },
 
         render: function () {
@@ -42,17 +44,17 @@ function($, _, Backbone, Properties, ExamAddTemplate, ExamsPanelView) {
                   'api-key': this.apiKey
                 },
                 body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'questions': []})
-            }).then(openEditExamPage());
+            }).then(response => openEditExamPage(response));
         },
 
-        backExamPanel: function(e) {
-            var examsPanelView = new ExamsPanelView({apiKey: this.apiKey});
-            $('.panel-exams').append(examsPanelView.render().$el);
+        backToHome: function(e) {
+            var foundationDetailView = new FoundationDetailView({apiKey: this.apiKey, model: this.foundationModel});
+            foundationDetailView.render();
         },
 
-        openEditExamPage() {
-            // TODO: select students and add questions.
-
+        openEditExamPage(model) {
+            var updateExamView = new UpdateExamView({apiKey: this.apiKey, model: model, foundationModel: this.foundationModel});
+            updateExamView.render();
         }
     });
 

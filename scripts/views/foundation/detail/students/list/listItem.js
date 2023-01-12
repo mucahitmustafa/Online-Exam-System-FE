@@ -21,6 +21,8 @@ function($, _, Backbone, Properties, StudentListItemTemplate, UpdateStudentView)
         initialize: function (options) {
             this.template = _.template(StudentListItemTemplate);
             this.apiKey = options.apiKey;
+            this.foundationModel = options.foundationModel;
+            return this;
         },
 
         render: function () {
@@ -29,7 +31,8 @@ function($, _, Backbone, Properties, StudentListItemTemplate, UpdateStudentView)
         },
         
         editStudent: function(e) {
-            new UpdateStudentView({apiKey: this.apiKey, model: this.model});
+            var updateStudentView = new UpdateStudentView({apiKey: this.apiKey, model: this.model, foundationModel: this.foundationModel });
+            updateStudentView.render();
         }, 
         
         deleteStudent: function(e) {

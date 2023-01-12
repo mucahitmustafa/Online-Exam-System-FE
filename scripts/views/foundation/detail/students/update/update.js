@@ -15,13 +15,13 @@ function($, _, Backbone, Properties, StudentUpdateTemplate, StudentsPanelView) {
         model: undefined,
         events: {
             "click #btn-saveStudent": "saveStudent",
-            "click #btn-backStudentPanel": "backStudentPanel",
+            "click #btn-backToHome": "backToHome",
         },
 
         initialize: function (options) {
             this.template = _.template(StudentUpdateTemplate);
             this.apiKey = options.apiKey;
-            this.render();
+            this.foundationModel = options.foundationModel;
             return this;
         },
 
@@ -36,6 +36,7 @@ function($, _, Backbone, Properties, StudentUpdateTemplate, StudentsPanelView) {
             var mail = $('#txt-mail').val();
             var password = $('#txt-pass').val();
 
+            var self = this;
             fetch(Properties.APIAddress + '/students/' + this.model.id, {
                 async: false,
                 method: 'PUT',
@@ -45,11 +46,11 @@ function($, _, Backbone, Properties, StudentUpdateTemplate, StudentsPanelView) {
                   'api-key': this.apiKey
                 },
                 body: JSON.stringify({'number': number, 'name': name, 'mail': mail, 'password': password})
-            }).then(this.backStudentPanel());
+            }).then(self.backToHome());
         },
 
-        backStudentPanel: function(e) {
-            var studentsPanelView = new StudentsPanelView({apiKey: this.apiKey});
+        backToHome: function(e) {
+            var studentsPanelView = new StudentsPanelView({apiKey: this.apiKey, model: this.foundationModel});
             $('.panel-students').append(studentsPanelView.render().$el);
         }
     });

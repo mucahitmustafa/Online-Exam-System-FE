@@ -18,6 +18,7 @@ function($, _, Backbone, Properties, ExamLoginsPanelTemplate, ExamLoginListItemV
         initialize: function (options) {
             this.template = _.template(ExamLoginsPanelTemplate);
             this.apiKey = options.apiKey;
+            return this;
         },
 
         render: function () {

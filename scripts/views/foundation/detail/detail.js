@@ -29,13 +29,13 @@ function($, _, Backbone, Properties, FoundationDetailTemplate, StudentsPanelView
         render: function () {
             this.$el.html(this.template(this.model.attributes));
 
-            var studentsPanelView = new StudentsPanelView({apiKey: this.apiKey});
+            var studentsPanelView = new StudentsPanelView({apiKey: this.apiKey, foundationModel: this.model});
             $('.panel-students').append(studentsPanelView.render().$el);
 
-            var examsPanelView = new ExamsPanelView({apiKey: this.apiKey});
+            var examsPanelView = new ExamsPanelView({apiKey: this.apiKey, foundationModel: this.model});
             $('.panel-exams').append(examsPanelView.render().$el);
 
-            var examLoginsPanelView = new ExamLoginsPanelView({apiKey: this.apiKey});
+            var examLoginsPanelView = new ExamLoginsPanelView({apiKey: this.apiKey, foundationModel: this.model});
             $('.panel-examLogins').append(examLoginsPanelView.render().$el);
             return this;
         }

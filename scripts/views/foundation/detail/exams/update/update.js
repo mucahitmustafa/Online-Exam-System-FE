@@ -4,9 +4,9 @@ define([
     'backbone',
     'properties',
     'text!./update.html',
-    '../detail'
+    'views/foundation/detail/detail'
 ],
-function($, _, Backbone, Properties, ExamUpdateTemplate, ExamsPanelView) {
+function($, _, Backbone, Properties, ExamUpdateTemplate, FoundationDetailView) {
 
     var ExamUpdateView = Backbone.View.extend({
 
@@ -15,13 +15,13 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, ExamsPanelView) {
         model: undefined,
         events: {
             "click #btn-saveExam": "saveExam",
-            "click #btn-backExamPanel": "backExamPanel",
+            "click #btn-backToHome": "backToHome",
         },
 
         initialize: function (options) {
             this.template = _.template(ExamUpdateTemplate);
             this.apiKey = options.apiKey;
-            this.render();
+            this.foundationModel = options.foundationModel;
             return this;
         },
 
@@ -135,6 +135,7 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, ExamsPanelView) {
                 {'text': q5text, 'answers': [q5answerA, q5answerB, q5answerC, q5answerD], 'correctAnswerIndex': ['A', 'B', 'C', 'D'].indexOf(q5correct)}    
             ];
 
+            var self = this;
             fetch(Properties.APIAddress + '/exams/' + this.model.id, {
                 async: false,
                 method: 'PUT',
@@ -144,12 +145,13 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, ExamsPanelView) {
                   'api-key': this.apiKey
                 },
                 body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'questions': questions})
-            }).then(this.backExamPanel());
+            }).then(self.backToHome());
+            return this;
         },
 
-        backExamPanel: function(e) {
-            var examsPanelView = new ExamsPanelView({apiKey: this.apiKey});
-            $('.panel-exams').append(examsPanelView.render().$el);
+        backToHome: function(e) {
+            var foundationDetailView = new FoundationDetailView({apiKey: this.apiKey, model: this.foundationModel});
+            foundationDetailView.render();
         }
     });
 

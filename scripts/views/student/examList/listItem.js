@@ -19,7 +19,7 @@ function($, _, Backbone, ExamListItemTemplate, ExamView) {
             this.template = _.template(ExamListItemTemplate);
             this.model = options.model;
             this.studentModel = options.studentModel;
-            this.render();
+            return this;
         },
 
         render: function () {
@@ -28,7 +28,8 @@ function($, _, Backbone, ExamListItemTemplate, ExamView) {
         },
 
         loginExam: function(e) {
-            new ExamView({model: this.model, studentModel: this.studentModel});
+            var examView = new ExamView({model: this.model, studentModel: this.studentModel});
+            examView.render();
         }
     });
 

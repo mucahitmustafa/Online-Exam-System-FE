@@ -19,6 +19,7 @@ function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView,
         initialize: function (options) {
             this.template = _.template(StudentsPanelTemplate);
             this.apiKey = options.apiKey;
+            this.foundationModel = options.foundationModel;
             return this;
         },
 
@@ -36,7 +37,7 @@ function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView,
                 }
             }).then(response => response.json()).then(function(response) {
                 response.content.map(student => {
-                    var studentListItemView = new StudentListItemView({ model: student, apiKey: self.apiKey });
+                    var studentListItemView = new StudentListItemView({ model: student, apiKey: self.apiKey, foundationModel: this.foundationModel });
                     $('.list-students').append(studentListItemView.render().$el);
                 });
             });
@@ -45,7 +46,8 @@ function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView,
         },
 
         newStudent: function(e) {
-            new StudentAddView({apiKey: this.apiKey});
+            var studentAddView = new StudentAddView({apiKey: this.apiKey, foundationModel: this.foundationModel});
+            studentAddView.render();
         }
     });
 

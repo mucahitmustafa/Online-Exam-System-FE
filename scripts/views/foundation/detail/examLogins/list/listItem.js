@@ -15,7 +15,7 @@ function($, _, Backbone, ExamLoginListItemTemplate) {
 
         initialize: function () {
             this.template = _.template(ExamLoginListItemTemplate);
-            this.render();
+            return this;
         },
 
         render: function () {

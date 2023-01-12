@@ -5,7 +5,7 @@ define([
     'properties',
     'text!./exam.html',
     './question',
-    '../home/home'
+    'views/student/home/home'
 ],
 function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView) {
 
@@ -21,8 +21,8 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
             this.template = _.template(ExamTemplate);
             this.model = options.model;
             this.studentModel = options.studentModel;
-            this.render();
             this.questions = [];
+            return this;
         },
 
         render: function () {
@@ -39,12 +39,11 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
             }).then(response => response.json()).then(function(response) {
                 response.map(question => {
                     self.questions.push(question.id);
-                    question.answers = question.answers[0].split(',');
                     var questionView = new QuestionView({ model: question });
                     $('.list-questions').append(questionView.render().$el);
                 });
             });
-
+            return this;
         },
 
         endExam: function(e) {
@@ -54,6 +53,7 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
                 answers += (_answer ? _answer.value : '#') + ",";
             });
             answers = answers.substring(0, answers.length - 1);
+            var self = this;
 
             fetch(Properties.APIAddress + '/examLogins', {
                 async: false,
@@ -64,11 +64,12 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
                   'api-key': this.apiKey
                 },
                 body: JSON.stringify({'examId': this.model.id, 'studentId': this.studentModel.id, 'answers': answers})
-            }).then(this.backToHome());
+            }).then(self.backToHome());
         },
 
         backToHome: function() {
-            new StudentHomeView({model: this.studentModel});  // TODO: throwing error!
+            var homeView = new StudentHomeView();
+            homeView.render();
         }
     });
 

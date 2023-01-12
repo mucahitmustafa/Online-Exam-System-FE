@@ -24,11 +24,13 @@ function(
         var appRouter = new AppRouter();
 
         appRouter.on('route:studentLogin', function () {
-            new StudentLoginView();
+            var studentLoginView = new StudentLoginView();
+            studentLoginView.render();
         });
 
         appRouter.on('route:foundationLogin', function () {
-            new FoundationLoginView();
+            var foundationLoginView = new FoundationLoginView();
+            foundationLoginView.render();
         });
 
         Backbone.history.start();

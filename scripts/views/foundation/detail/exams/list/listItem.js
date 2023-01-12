@@ -21,6 +21,8 @@ function($, _, Backbone, Properties, ExamListItemTemplate, UpdateExamView) {
         initialize: function (options) {
             this.template = _.template(ExamListItemTemplate);
             this.apiKey = options.apiKey;
+            this.foundationModel = options.foundationModel;
+            return this;
         },
 
         render: function () {
@@ -29,7 +31,8 @@ function($, _, Backbone, Properties, ExamListItemTemplate, UpdateExamView) {
         },
         
         editExam: function(e) {
-            new UpdateExamView({apiKey: this.apiKey, model: this.model});
+            var examUpdateView = new UpdateExamView({apiKey: this.apiKey, model: this.model, foundationModel: this.foundationModel});
+            examUpdateView.render();
         }, 
         
         deleteExam: function(e) {
