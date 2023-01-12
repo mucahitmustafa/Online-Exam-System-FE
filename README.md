@@ -2,11 +2,14 @@
 
 ### To run project:
 `npm install http-server -g`
+
 `http-server`
+
 _Set backend API address in properties.js file_
 
-### Screenshots
 
+
+### Screenshots
 
 ![plot](./screenshots/man_01_login.png)
 ![plot](./screenshots/man_02_home.png)
