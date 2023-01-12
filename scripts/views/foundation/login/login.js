@@ -17,11 +17,13 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
         },
 
         initialize: function () {
+            this.template = _.template(FoundationLoginTemplate);
+
             return this;
         },
 
         render: function () {
-            this.$el.html(_.template(FoundationLoginTemplate, {} ));
+            this.$el.html(this.template());
             $('#alert-foundationLoginError').hide();
             return this;
         },
