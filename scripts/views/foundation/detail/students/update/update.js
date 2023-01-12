@@ -3,16 +3,13 @@ define([
     'underscore',
     'backbone',
     'properties',
-    'text!./update.html',
-    '../detail'
+    'text!./update.html'
 ],
-function($, _, Backbone, Properties, StudentUpdateTemplate, StudentsPanelView) {
+function($, _, Backbone, Properties, StudentUpdateTemplate) {
 
     var StudentUpdateView = Backbone.View.extend({
 
         el: '.container',
-        apiKey: undefined,
-        model: undefined,
         events: {
             "click #btn-saveStudent": "saveStudent",
             "click #btn-backToHome": "backToHome",
@@ -21,12 +18,22 @@ function($, _, Backbone, Properties, StudentUpdateTemplate, StudentsPanelView) {
         initialize: function (options) {
             this.template = _.template(StudentUpdateTemplate);
             this.apiKey = options.apiKey;
-            this.foundationModel = options.foundationModel;
+            this.id = options.id;
             return this;
         },
 
         render: function () {
-            this.$el.html(this.template(this.model));
+            fetch(Properties.APIAddress + '/students/' + this.id, {
+                async: false,
+                method: 'GET',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                }
+            }).then(response => response.json()).then(response => {
+                this.model = response;
+                this.$el.html(this.template(this.model));
+            });
             return this;
         },
 
@@ -50,8 +57,7 @@ function($, _, Backbone, Properties, StudentUpdateTemplate, StudentsPanelView) {
         },
 
         backToHome: function(e) {
-            var studentsPanelView = new StudentsPanelView({apiKey: this.apiKey, model: this.foundationModel});
-            $('.panel-students').append(studentsPanelView.render().$el);
+            Backbone.history.navigate('#foundation/' + this.apiKey);
         }
     });
 

@@ -3,15 +3,12 @@ define([
     'underscore',
     'backbone',
     'properties',
-    'text!./listItem.html',
-    '../update/update'
+    'text!./listItem.html'
 ],
-function($, _, Backbone, Properties, StudentListItemTemplate, UpdateStudentView) {
+function($, _, Backbone, Properties, StudentListItemTemplate) {
 
     var StudentListItemView = Backbone.View.extend({
 
-        model: undefined,
-        apiKey: undefined,
         tagName: 'tr',
         events: {
             "click #btn-editStudent": "editStudent",
@@ -21,7 +18,6 @@ function($, _, Backbone, Properties, StudentListItemTemplate, UpdateStudentView)
         initialize: function (options) {
             this.template = _.template(StudentListItemTemplate);
             this.apiKey = options.apiKey;
-            this.foundationModel = options.foundationModel;
             return this;
         },
 
@@ -31,8 +27,7 @@ function($, _, Backbone, Properties, StudentListItemTemplate, UpdateStudentView)
         },
         
         editStudent: function(e) {
-            var updateStudentView = new UpdateStudentView({apiKey: this.apiKey, model: this.model, foundationModel: this.foundationModel });
-            updateStudentView.render();
+            Backbone.history.navigate('#foundation/' + this.apiKey + '/editStudent/' + this.model.id);
         }, 
         
         deleteStudent: function(e) {

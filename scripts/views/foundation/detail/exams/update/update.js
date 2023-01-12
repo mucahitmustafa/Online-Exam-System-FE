@@ -3,16 +3,14 @@ define([
     'underscore',
     'backbone',
     'properties',
-    'text!./update.html',
-    'views/foundation/detail/detail'
+    'text!./update.html'
 ],
-function($, _, Backbone, Properties, ExamUpdateTemplate, FoundationDetailView) {
+function($, _, Backbone, Properties, ExamUpdateTemplate) {
 
     var ExamUpdateView = Backbone.View.extend({
 
         el: '.container',
         apiKey: undefined,
-        model: undefined,
         events: {
             "click #btn-saveExam": "saveExam",
             "click #btn-backToHome": "backToHome",
@@ -21,65 +19,74 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, FoundationDetailView) {
         initialize: function (options) {
             this.template = _.template(ExamUpdateTemplate);
             this.apiKey = options.apiKey;
-            this.foundationModel = options.foundationModel;
+            this.id = options.id;
             return this;
         },
 
         render: function () {
-            this.$el.html(this.template(this.model));
-
-            fetch(Properties.APIAddress + '/questions/byExam/' + this.model.id, {
+            fetch(Properties.APIAddress + '/exams/' + this.id, {
                 async: false,
                 method: 'GET',
                 headers: {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json'
                 }
-            }).then(response => response.json()).then(function(response) {
-                if (response.length != 5) return;
-
-                var q1 = response[0];
-                var q2 = response[1];
-                var q3 = response[2];
-                var q4 = response[3];
-                var q5 = response[4];
-
-                $('#txt-question1').val(q1.text);
-                $('#txt-question2').val(q2.text);
-                $('#txt-question3').val(q3.text);
-                $('#txt-question4').val(q4.text);
-                $('#txt-question5').val(q5.text);
-
-                $('#txt-question1-answerA').val(q1.answers[0])
-                $('#txt-question1-answerB').val(q1.answers[1])
-                $('#txt-question1-answerC').val(q1.answers[2])
-                $('#txt-question1-answerD').val(q1.answers[3])
-
-                $('#txt-question2-answerB').val(q2.answers[1])
-                $('#txt-question2-answerC').val(q2.answers[2])
-                $('#txt-question2-answerA').val(q2.answers[0])
-                $('#txt-question2-answerD').val(q2.answers[3])
-
-                $('#txt-question3-answerA').val(q3.answers[0])
-                $('#txt-question3-answerB').val(q3.answers[1])
-                $('#txt-question3-answerC').val(q3.answers[2])
-                $('#txt-question3-answerD').val(q3.answers[3])
-
-                $('#txt-question4-answerA').val(q4.answers[0])
-                $('#txt-question4-answerB').val(q4.answers[1])
-                $('#txt-question4-answerC').val(q4.answers[2])
-                $('#txt-question4-answerD').val(q4.answers[3])
-
-                $('#txt-question5-answerA').val(q5.answers[0])
-                $('#txt-question5-answerB').val(q5.answers[1])
-                $('#txt-question5-answerC').val(q5.answers[2])
-                $('#txt-question5-answerD').val(q5.answers[3])
-                
-                $('#txt-question1-answerCorrect').val(['A', 'B', 'C', 'D'][q1.correctAnswerIndex]);
-                $('#txt-question2-answerCorrect').val(['A', 'B', 'C', 'D'][q2.correctAnswerIndex]);
-                $('#txt-question3-answerCorrect').val(['A', 'B', 'C', 'D'][q3.correctAnswerIndex]);
-                $('#txt-question4-answerCorrect').val(['A', 'B', 'C', 'D'][q4.correctAnswerIndex]);
-                $('#txt-question5-answerCorrect').val(['A', 'B', 'C', 'D'][q5.correctAnswerIndex]);
+            }).then(response => response.json()).then(response => {
+                this.model = response;
+                this.$el.html(this.template(this.model));
+                fetch(Properties.APIAddress + '/questions/byExam/' + this.id, {
+                    async: false,
+                    method: 'GET',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                    }
+                }).then(response => response.json()).then(function(response) {
+                    if (response.length != 5) return;
+    
+                    var q1 = response[0];
+                    var q2 = response[1];
+                    var q3 = response[2];
+                    var q4 = response[3];
+                    var q5 = response[4];
+    
+                    $('#txt-question1').val(q1.text);
+                    $('#txt-question2').val(q2.text);
+                    $('#txt-question3').val(q3.text);
+                    $('#txt-question4').val(q4.text);
+                    $('#txt-question5').val(q5.text);
+    
+                    $('#txt-question1-answerA').val(q1.answers[0])
+                    $('#txt-question1-answerB').val(q1.answers[1])
+                    $('#txt-question1-answerC').val(q1.answers[2])
+                    $('#txt-question1-answerD').val(q1.answers[3])
+    
+                    $('#txt-question2-answerB').val(q2.answers[1])
+                    $('#txt-question2-answerC').val(q2.answers[2])
+                    $('#txt-question2-answerA').val(q2.answers[0])
+                    $('#txt-question2-answerD').val(q2.answers[3])
+    
+                    $('#txt-question3-answerA').val(q3.answers[0])
+                    $('#txt-question3-answerB').val(q3.answers[1])
+                    $('#txt-question3-answerC').val(q3.answers[2])
+                    $('#txt-question3-answerD').val(q3.answers[3])
+    
+                    $('#txt-question4-answerA').val(q4.answers[0])
+                    $('#txt-question4-answerB').val(q4.answers[1])
+                    $('#txt-question4-answerC').val(q4.answers[2])
+                    $('#txt-question4-answerD').val(q4.answers[3])
+    
+                    $('#txt-question5-answerA').val(q5.answers[0])
+                    $('#txt-question5-answerB').val(q5.answers[1])
+                    $('#txt-question5-answerC').val(q5.answers[2])
+                    $('#txt-question5-answerD').val(q5.answers[3])
+                    
+                    $('#txt-question1-answerCorrect').val(['A', 'B', 'C', 'D'][q1.correctAnswerIndex]);
+                    $('#txt-question2-answerCorrect').val(['A', 'B', 'C', 'D'][q2.correctAnswerIndex]);
+                    $('#txt-question3-answerCorrect').val(['A', 'B', 'C', 'D'][q3.correctAnswerIndex]);
+                    $('#txt-question4-answerCorrect').val(['A', 'B', 'C', 'D'][q4.correctAnswerIndex]);
+                    $('#txt-question5-answerCorrect').val(['A', 'B', 'C', 'D'][q5.correctAnswerIndex]);
+                });
             });
 
             return this;
@@ -150,8 +157,7 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, FoundationDetailView) {
         },
 
         backToHome: function(e) {
-            var foundationDetailView = new FoundationDetailView({apiKey: this.apiKey, model: this.foundationModel});
-            foundationDetailView.render();
+            Backbone.history.navigate('#foundation/' + this.apiKey);
         }
     });
 

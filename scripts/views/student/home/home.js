@@ -18,27 +18,39 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
 
         initialize: function (options) {
             this.template = _.template(StudentHomeTemplate);
+            this.id = options.id;
             return this;
         },
 
         render: function () {
-            this.$el.html(this.template(this.model));
-            var self = this;
-            fetch(Properties.APIAddress + '/exams/byStudent/' + this.model.id, {
+            fetch(Properties.APIAddress + '/students/' + this.id, {
                 async: false,
                 method: 'GET',
                 headers: {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json'
                 }
-            }).then(response => response.json()).then(function(response) {
-                response.map(exam => {
-                    var examListItemView = new ExamListItemView({ model: exam, studentModel: self.model});
-                    $('.list-exams').append(examListItemView.render().$el);
+            }).then(response => response.json()).then(response => {
+                this.model = response;
+                this.$el.html(this.template(this.model));
+                var self = this;
+                fetch(Properties.APIAddress + '/exams/byStudent/' + this.model.id, {
+                    async: false,
+                    method: 'GET',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                    }
+                }).then(response => response.json()).then(function(response) {
+                    response.map(exam => {
+                        var examListItemView = new ExamListItemView({ model: exam, studentId: self.id});
+                        $('.list-exams').append(examListItemView.render().$el);
+                    });
                 });
             });
+
             return this;
-        }
+        },
 
     });
 

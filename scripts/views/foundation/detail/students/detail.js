@@ -4,10 +4,9 @@ define([
     'backbone',
     'properties',
     'text!./detail.html',
-    './list/listItem',
-    './add/add'
+    './list/listItem'
 ],
-function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView, StudentAddView) {
+function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView) {
 
     var StudentsPanelView = Backbone.View.extend({
 
@@ -19,7 +18,6 @@ function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView,
         initialize: function (options) {
             this.template = _.template(StudentsPanelTemplate);
             this.apiKey = options.apiKey;
-            this.foundationModel = options.foundationModel;
             return this;
         },
 
@@ -37,7 +35,7 @@ function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView,
                 }
             }).then(response => response.json()).then(function(response) {
                 response.content.map(student => {
-                    var studentListItemView = new StudentListItemView({ model: student, apiKey: self.apiKey, foundationModel: this.foundationModel });
+                    var studentListItemView = new StudentListItemView({ model: student, apiKey: self.apiKey });
                     $('.list-students').append(studentListItemView.render().$el);
                 });
             });
@@ -46,8 +44,7 @@ function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView,
         },
 
         newStudent: function(e) {
-            var studentAddView = new StudentAddView({apiKey: this.apiKey, foundationModel: this.foundationModel});
-            studentAddView.render();
+            Backbone.history.navigate('#foundation/' + this.apiKey + '/addStudent');
         }
     });
 

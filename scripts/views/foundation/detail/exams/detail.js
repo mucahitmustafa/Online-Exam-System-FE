@@ -4,10 +4,9 @@ define([
     'backbone',
     'properties',
     'text!./detail.html',
-    './list/listItem',
-    './add/add'
+    './list/listItem'
 ],
-function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView, ExamAddView) {
+function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView) {
 
     var ExamsPanelView = Backbone.View.extend({
 
@@ -19,7 +18,6 @@ function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView, ExamA
         initialize: function (options) {
             this.template = _.template(ExamsPanelTemplate);
             this.apiKey = options.apiKey;
-            this.foundationModel = options.foundationModel;
             return this;
         },
 
@@ -37,7 +35,7 @@ function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView, ExamA
                 }
             }).then(response => response.json()).then(function(response) {
                 response.content.map(exam => {
-                    var examListItemView = new ExamListItemView({ model: exam, apiKey: self.apiKey, foundationModel: self.foundationModel });
+                    var examListItemView = new ExamListItemView({ model: exam, apiKey: self.apiKey });
                     $('.list-exams').append(examListItemView.render().$el);
                 });
             });
@@ -46,8 +44,7 @@ function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView, ExamA
         },
 
         newExam: function(e) {
-            var examAddView = new ExamAddView({apiKey: this.apiKey, foundationModel: this.foundationModel});
-            examAddView.render();
+            Backbone.history.navigate('#foundation/' + this.apiKey + '/addExam');
         }
 
     });

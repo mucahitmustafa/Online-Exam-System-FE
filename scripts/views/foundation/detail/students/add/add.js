@@ -3,15 +3,13 @@ define([
     'underscore',
     'backbone',
     'properties',
-    'text!./add.html',
-    'views/foundation/detail/detail'
+    'text!./add.html'
 ],
-function($, _, Backbone, Properties, StudentAddTemplate, FoundationDetailView) {
+function($, _, Backbone, Properties, StudentAddTemplate) {
 
     var StudentAddView = Backbone.View.extend({
 
         el: '.container',
-        apiKey: undefined,
         events: {
             "click #btn-saveStudent": "saveStudent",
             "click #btn-backToHome": "backToHome",
@@ -20,7 +18,6 @@ function($, _, Backbone, Properties, StudentAddTemplate, FoundationDetailView) {
         initialize: function (options) {
             this.template = _.template(StudentAddTemplate);
             this.apiKey = options.apiKey;
-            this.foundationModel = options.foundationModel;
             return this;
         },
 
@@ -49,8 +46,7 @@ function($, _, Backbone, Properties, StudentAddTemplate, FoundationDetailView) {
         },
 
         backToHome: function(e) {
-            var foundationDetailView = new FoundationDetailView({apiKey: this.apiKey, model: this.foundationModel});
-            foundationDetailView.render();
+            Backbone.history.navigate('#foundation/' + this.apiKey);
         }
     });
 

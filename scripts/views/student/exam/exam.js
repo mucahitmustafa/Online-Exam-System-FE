@@ -19,30 +19,40 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
 
         initialize: function (options) {
             this.template = _.template(ExamTemplate);
-            this.model = options.model;
-            this.studentModel = options.studentModel;
+            this.studentId = options.id;
+            this.examId = options.examId;
             this.questions = [];
             return this;
         },
 
         render: function () {
-            this.$el.html(this.template(this.model));
-
             var self = this;
-            fetch(Properties.APIAddress + '/questions/byExam/' + this.model.id, {
+            fetch(Properties.APIAddress + '/exams/' + this.examId, {
                 async: false,
                 method: 'GET',
                 headers: {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json'
                 }
-            }).then(response => response.json()).then(function(response) {
-                response.map(question => {
-                    self.questions.push(question.id);
-                    var questionView = new QuestionView({ model: question });
-                    $('.list-questions').append(questionView.render().$el);
+            }).then(response => response.json()).then(response => {
+                this.model = response;
+                this.$el.html(this.template(this.model));
+                fetch(Properties.APIAddress + '/questions/byExam/' + this.examId, {
+                    async: false,
+                    method: 'GET',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                    }
+                }).then(response => response.json()).then(function(response) {
+                    response.map(question => {
+                        self.questions.push(question.id);
+                        var questionView = new QuestionView({ model: question });
+                        $('.list-questions').append(questionView.render().$el);
+                    });
                 });
             });
+
             return this;
         },
 
@@ -53,23 +63,16 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
                 answers += (_answer ? _answer.value : '#') + ",";
             });
             answers = answers.substring(0, answers.length - 1);
-            var self = this;
 
             fetch(Properties.APIAddress + '/examLogins', {
                 async: false,
                 method: 'POST',
                 headers: {
                   'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                  'api-key': this.apiKey
+                  'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({'examId': this.model.id, 'studentId': this.studentModel.id, 'answers': answers})
-            }).then(self.backToHome());
-        },
-
-        backToHome: function() {
-            var homeView = new StudentHomeView();
-            homeView.render();
+                body: JSON.stringify({'examId': this.examId, 'studentId': this.studentId, 'answers': answers}),
+            }).then(response => response.json()).then(response => Backbone.history.navigate('#student/' + response.studentId, {trigger: true}));
         }
     });
 

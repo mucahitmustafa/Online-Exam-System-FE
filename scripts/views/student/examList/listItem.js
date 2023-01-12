@@ -2,10 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!./listItem.html',
-    '../exam/exam'
+    'text!./listItem.html'
 ],
-function($, _, Backbone, ExamListItemTemplate, ExamView) {
+function($, _, Backbone, ExamListItemTemplate) {
 
     var ExamListItemView = Backbone.View.extend({
 
@@ -18,7 +17,7 @@ function($, _, Backbone, ExamListItemTemplate, ExamView) {
         initialize: function (options) {
             this.template = _.template(ExamListItemTemplate);
             this.model = options.model;
-            this.studentModel = options.studentModel;
+            this.studentId = options.studentId;
             return this;
         },
 
@@ -28,8 +27,7 @@ function($, _, Backbone, ExamListItemTemplate, ExamView) {
         },
 
         loginExam: function(e) {
-            var examView = new ExamView({model: this.model, studentModel: this.studentModel});
-            examView.render();
+            Backbone.history.navigate('#student/' + this.studentId + '/exam/' + this.model.id, {trigger: true});
         }
     });
 

@@ -3,11 +3,9 @@ define([
     'underscore',
     'backbone',
     'properties',
-    'text!./add.html',
-    'views/foundation/detail/detail',
-    '../update/update'
+    'text!./add.html'
 ],
-function($, _, Backbone, Properties, ExamAddTemplate, FoundationDetailView, UpdateExamView) {
+function($, _, Backbone, Properties, ExamAddTemplate) {
 
     var ExamAddView = Backbone.View.extend({
 
@@ -21,7 +19,6 @@ function($, _, Backbone, Properties, ExamAddTemplate, FoundationDetailView, Upda
         initialize: function (options) {
             this.template = _.template(ExamAddTemplate);
             this.apiKey = options.apiKey;
-            this.foundationModel = options.foundationModel;
             return this;
         },
 
@@ -35,6 +32,7 @@ function($, _, Backbone, Properties, ExamAddTemplate, FoundationDetailView, Upda
             var startDate = $('#txt-startDate').val();
             var endDate = $('#txt-endDate').val();
 
+            var self = this;
             fetch(Properties.APIAddress + '/exams/', {
                 async: false,
                 method: 'POST',
@@ -44,17 +42,15 @@ function($, _, Backbone, Properties, ExamAddTemplate, FoundationDetailView, Upda
                   'api-key': this.apiKey
                 },
                 body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'questions': []})
-            }).then(response => openEditExamPage(response));
+            }).then(self.openEditExamPage());
         },
 
         backToHome: function(e) {
-            var foundationDetailView = new FoundationDetailView({apiKey: this.apiKey, model: this.foundationModel});
-            foundationDetailView.render();
+            Backbone.history.navigate('#foundation/' + this.apiKey);
         },
 
-        openEditExamPage(model) {
-            var updateExamView = new UpdateExamView({apiKey: this.apiKey, model: model, foundationModel: this.foundationModel});
-            updateExamView.render();
+        openEditExamPage() {
+            Backbone.history.navigate('#foundation/' + this.apiKey + '/editExam/' + this.model.id);
         }
     });
 

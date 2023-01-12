@@ -3,10 +3,9 @@ define([
     'underscore',
     'backbone',
     'text!./login.html',
-    'properties',
-    '../home/home'
+    'properties'
 ],
-function($, _, Backbone, StudentLoginTemplate, Properties, StudentHomeView) {
+function($, _, Backbone, StudentLoginTemplate, Properties) {
 
     var StudentLoginView = Backbone.View.extend({
 
@@ -16,7 +15,7 @@ function($, _, Backbone, StudentLoginTemplate, Properties, StudentHomeView) {
 
         },
 
-        initialize: function () {
+        initialize: function (options) {
             this.template = _.template(StudentLoginTemplate);
             return this;
         },
@@ -45,8 +44,7 @@ function($, _, Backbone, StudentLoginTemplate, Properties, StudentHomeView) {
                 if (response.error) {
                     $('#alert-studentLoginError').show();
                 } else {
-                    var homeView = new StudentHomeView({model: response});
-                    homeView.render();
+                    Backbone.history.navigate('#student/' + response.id, {trigger: true});
                 }
             })
         

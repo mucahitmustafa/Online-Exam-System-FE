@@ -3,10 +3,9 @@ define([
     'underscore',
     'backbone',
     'properties',
-    'text!./listItem.html',
-    '../update/update'
+    'text!./listItem.html'
 ],
-function($, _, Backbone, Properties, ExamListItemTemplate, UpdateExamView) {
+function($, _, Backbone, Properties, ExamListItemTemplate) {
 
     var ExamListItemView = Backbone.View.extend({
 
@@ -21,7 +20,6 @@ function($, _, Backbone, Properties, ExamListItemTemplate, UpdateExamView) {
         initialize: function (options) {
             this.template = _.template(ExamListItemTemplate);
             this.apiKey = options.apiKey;
-            this.foundationModel = options.foundationModel;
             return this;
         },
 
@@ -31,8 +29,7 @@ function($, _, Backbone, Properties, ExamListItemTemplate, UpdateExamView) {
         },
         
         editExam: function(e) {
-            var examUpdateView = new UpdateExamView({apiKey: this.apiKey, model: this.model, foundationModel: this.foundationModel});
-            examUpdateView.render();
+            Backbone.history.navigate('#foundation/' + this.apiKey + '/editExam/' + this.model.id);
         }, 
         
         deleteExam: function(e) {
