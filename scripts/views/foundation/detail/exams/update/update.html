@@ -1,70 +1,97 @@
-<div class="main-content" >
-    <h1>Edit Exam</h1>
-     
-    <input type="text" class="form-control" placeholder="Name" aria-label="Name" id="txt-name" value="<%= name %>">
-    <input type="text" class="form-control" placeholder="Start Date" aria-label="Start Date" id="txt-startDate" value="<%= startDate %>">
-    <input type="text" class="form-control" placeholder="End Date" aria-label="End Data" id="txt-endDate" value="<%= endDate %>">
+<div class="main-content">
 
-    <button class="btn btn-outline-secondary" type="button" id="btn-saveExam">Save</button>
-    <button class="btn btn-outline-secondary" type="button" id="btn-backExamPanel">Back</button>
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-xl-6" style="margin: auto;">
+            <h3 style="margin-top: 10px; margin-bottom: 5px;">Edit Exam</h3>
 
-    <h2>Questions</h2>
-    <ul class="list-questions">
-        <li>
-            <h3>1. Question</h3>
-            <input type="text" class="form-control" placeholder="Question 1" aria-label="Question 1" id="txt-question1" value="Question 1">
-            <h4>Answers</h4>
-            <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question1-answerA" value="A">
-            <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question1-answerB" value="B">
-            <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question1-answerC" value="C">
-            <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question1-answerD" value="D">
-            <h4>Correct Answer</h4>
-            <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question1-answerCorrect" value="A">
-        </li>
-        <li>
-            <h3>2. Question</h3>
-            <input type="text" class="form-control" placeholder="Question 2" aria-label="Question 2" id="txt-question2" value="Question 2">
-            <h4>Answers</h4>
-            <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question2-answerA" value="A">
-            <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question2-answerB" value="B">
-            <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question2-answerC" value="C">
-            <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question2-answerD" value="D">
-            <h4>Correct Answer</h4>
-            <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question2-answerCorrect" value="A">
-        </li>
-        <li>
-            <h3>3. Question</h3>
-            <input type="text" class="form-control" placeholder="Question 3" aria-label="Question 3" id="txt-question3" value="Question 3">
-            <h4>Answers</h4>
-            <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question3-answerA" value="A">
-            <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question3-answerB" value="B">
-            <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question3-answerC" value="C">
-            <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question3-answerD" value="D">
-            <h4>Correct Answer</h4>
-            <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question3-answerCorrect" value="A">
-        </li>
-        <li>
-            <h3>4. Question</h3>
-            <input type="text" class="form-control" placeholder="Question 4" aria-label="Question 4" id="txt-question4" value="Question 4">
-            <h4>Answers</h4>
-            <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question4-answerA" value="A">
-            <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question4-answerB" value="B">
-            <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question4-answerC" value="C">
-            <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question4-answerD" value="D">
-            <h4>Correct Answer</h4>
-            <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question4-answerCorrect" value="A">
-        </li>
-        <li>
-            <h3>5. Question</h3>
-            <input type="text" class="form-control" placeholder="Question 5" aria-label="Question 5" id="txt-question5" value="Question 5">
-            <h4>Answers</h4>
-            <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question5-answerA" value="A">
-            <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question5-answerB" value="B">
-            <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question5-answerC" value="C">
-            <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question5-answerD" value="D">
-            <h4>Correct Answer</h4>
-            <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question5-answerCorrect" value="A">
-        </li>
-    </ul>
+            <input type="text" class="form-control" placeholder="Name" aria-label="Name" id="txt-name" style="margin-bottom: 5px;" value="<%= name %>">
+            <input type="text" class="form-control" placeholder="Start Date" aria-label="Start Date" id="txt-startDate" style="margin-bottom: 5px;" value="<%= startDate %>">
+            <input type="text" class="form-control" placeholder="End Date" aria-label="End Data" id="txt-endDate" style="margin-bottom: 10px;" value="<%= endDate %>">
 
+            <h4>Questions</h4>
+            <ul class="list-questions">
+                <li style="margin-top: 15px;">
+                    <h5>1. Question</h5>
+                    <input type="text" class="form-control" placeholder="Question 1" aria-label="Question 1" id="txt-question1" value="Question 1">
+
+                    <h6 style="margin-top: 5px;">Answers</h6>
+                    <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question1-answerA" value="A">
+                    <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question1-answerB" value="B">
+                    <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question1-answerC" value="C">
+                    <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question1-answerD" value="D">
+
+                    <h6 style="margin-top: 5px;">Correct Answer</h6>
+                    <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question1-answerCorrect" value="A">
+                </li>
+
+                <hr class="hr" style="margin-top: 20px; margin-bottom: 20px;"/>
+
+                <li style="margin-top: 15px;">
+                    <h5>2. Question</h5>
+                    <input type="text" class="form-control" placeholder="Question 2" aria-label="Question 2" id="txt-question2" value="Question 2">
+
+                    <h6 style="margin-top: 5px;">Answers</h6>
+                    <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question2-answerA" value="A">
+                    <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question2-answerB" value="B">
+                    <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question2-answerC" value="C">
+                    <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question2-answerD" value="D">
+
+                    <h6 style="margin-top: 5px;">Correct Answer</h6>
+                    <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question2-answerCorrect" value="A">
+                </li>
+
+                <hr class="hr" style="margin-top: 20px; margin-bottom: 20px;"/>
+
+                <li style="margin-top: 15px;">
+                    <h5>3. Question</h5>
+                    <input type="text" class="form-control" placeholder="Question 3" aria-label="Question 3" id="txt-question3" value="Question 3">
+
+                    <h6 style="margin-top: 5px;">Answers</h6>
+                    <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question3-answerA" value="A">
+                    <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question3-answerB" value="B">
+                    <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question3-answerC" value="C">
+                    <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question3-answerD" value="D">
+
+                    <h6 style="margin-top: 5px;">Correct Answer</h6>
+                    <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question3-answerCorrect" value="A">
+                </li>
+
+                <hr class="hr" style="margin-top: 20px; margin-bottom: 20px;"/>
+
+                <li style="margin-top: 15px;">
+                    <h5>4. Question</h5>
+                    <input type="text" class="form-control" placeholder="Question 4" aria-label="Question 4" id="txt-question4" value="Question 4">
+
+                    <h6 style="margin-top: 5px;">Answers</h6>
+                    <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question4-answerA" value="A">
+                    <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question4-answerB" value="B">
+                    <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question4-answerC" value="C">
+                    <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question4-answerD" value="D">
+
+                    <h6 style="margin-top: 5px;">Correct Answer</h6>
+                    <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question4-answerCorrect" value="A">
+                </li>
+
+                <hr class="hr" style="margin-top: 20px; margin-bottom: 20px;"/>
+
+                <li style="margin-top: 15px;">
+                    <h5>5. Question</h5>
+                    <input type="text" class="form-control" placeholder="Question 5" aria-label="Question 5" id="txt-question5" value="Question 5">
+
+                    <h6 style="margin-top: 5px;">Answers</h6>
+                    <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question5-answerA" value="A">
+                    <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question5-answerB" value="B">
+                    <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question5-answerC" value="C">
+                    <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question5-answerD" value="D">
+
+                    <h6 style="margin-top: 5px;">Correct Answer</h6>
+                    <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question5-answerCorrect" value="A">
+                </li>
+            </ul>
+
+            <button class="btn btn-success" type="button" id="btn-saveExam">Save</button>
+            <button class="btn btn-danger" type="button" id="btn-backExamPanel">Cancel</button>
+        </div>
+    </div>
 </div>
+
