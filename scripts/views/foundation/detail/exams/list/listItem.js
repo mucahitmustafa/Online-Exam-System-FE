@@ -14,7 +14,8 @@ function($, _, Backbone, Properties, ExamListItemTemplate) {
         tagName: 'tr',
         events: {
             "click #btn-editExam": "editExam",
-            "click #btn-deleteExam": "deleteExam"
+            "click #btn-deleteExam": "deleteExam",
+            "click #btn-examStatistics": "examStatistics",
         },
 
         initialize: function (options) {
@@ -29,8 +30,8 @@ function($, _, Backbone, Properties, ExamListItemTemplate) {
         },
         
         editExam: function(e) {
-            document.cookie = this.apiKey;
             Backbone.history.navigate('#foundation/editExam/' + this.model.id, { trigger: true });
+            e.preventDefault();
         }, 
         
         deleteExam: function(e) {
@@ -46,6 +47,12 @@ function($, _, Backbone, Properties, ExamListItemTemplate) {
                 alert("Exam " + this.model.id + " deleted.");
                 this.$el.html("");
             });
+            e.preventDefault();
+        },
+
+        examStatistics: function(e) {
+            Backbone.history.navigate('#foundation/examStatistics/' + this.model.id, { trigger: true });
+            e.preventDefault();
         }
     });
 

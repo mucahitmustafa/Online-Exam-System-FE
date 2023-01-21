@@ -1,0 +1,57 @@
+<div class="main-content">
+
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-xl-6" style="margin: auto;">
+            <h3  style="margin-top: 10px; margin-bottom: 5px;">'<%= name %>' Exam Statistics</h3>
+
+              
+            <table class="table col-xl-8 col-lg-8 col-md-8">
+                <tbody>
+                    <tr>
+                        <td>Total Participants</td>
+                        <td><%= totalParticipants %></td>
+                    </tr>
+                    <tr>
+                        <td>Average Score</td>
+                        <td><%= averageScore %></td>
+                    </tr>
+                    <tr>
+                        <td>Highest Score</td>
+                        <td><%= highestScore %></td>
+                    </tr>
+                    <tr>
+                        <td>Lowest Score</td>
+                        <td><%= lowestScore %></td>
+                    </tr>
+                    <tr>
+                        <td>Most Correct Question</td>
+                        <td><%= mostCorrectQuestion %></td>
+                    </tr>
+                    <tr>
+                        <td>Most Wrong Question</td>
+                        <td><%= mostWrongQuestion %></td>
+                    </tr>
+                    <tr>
+                        <td>Most Left Blank Question</td>
+                        <td><%= mostLeftBlankQuestion %></td>
+                    </tr>
+                    
+                </tbody>
+             </table>
+             <table class="table col-xl-8 col-lg-8 col-md-8">
+                <thead>
+                  <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col">Correct / Wrong / Blank</th>
+                </tr>
+                </thead>
+                
+                 <tbody class="list-questionStatistics">
+                     
+                 </tbody>
+              </table>
+
+            <button class="btn btn-danger" type="button" id="btn-backToHome">Home</button>
+        </div>
+    </div>
+</div>

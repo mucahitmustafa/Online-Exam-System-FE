@@ -65,6 +65,7 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
             var question = {'index': this.totalQuestions, 'text': '', 'answers': ['', '', '', ''], 'correctAnswerIndex': 0};
             let questionListItem = new QuestionListItem(question);
             $('.list-questions').append(questionListItem.render().$el);
+            e.preventDefault();
         },
 
         saveExam: function(e) {
@@ -98,12 +99,13 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
                 },
                 body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'questions': questions})
             }).then(self.backToHome());
+            e.preventDefault();
             return this;
         },
 
         backToHome: function(e) {
-            document.cookie = this.apiKey;
             Backbone.history.navigate('#foundation/detail', {trigger: true});
+            if (e) e.preventDefault();
         }
     });
 

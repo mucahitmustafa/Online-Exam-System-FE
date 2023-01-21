@@ -1,0 +1,49 @@
+<div class="main-content">
+
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-xl-6" style="margin: auto;">
+            <h3  style="margin-top: 10px; margin-bottom: 5px;">'<%= studentName %>' -> '<%= examName %>' Exam Login Detail</h3>
+            
+            <table class="table col-xl-8 col-lg-8 col-md-8">
+                <tbody>
+                    <tr>
+                        <td>Exam Name</td>
+                        <td><%= examName %></td>
+                    </tr>
+                    <tr>
+                        <td>Student Name</td>
+                        <td><%= studentName %></td>
+                    </tr>
+                    <tr>
+                        <td>Score</td>
+                        <td><%= score %></td>
+                    </tr>
+                    <tr>
+                        <td>Login Date</td>
+                        <td><%= loginDate %></td>
+                    </tr>
+                    <tr>
+                        <td>Correct Answer</td>
+                        <td>Count: <%= correctAnswerCount %> , Questions: <%= correctAnswers %></td>
+                    </tr>
+                    <tr>
+                        <td>Wrong Answer</td>
+                        <td>Count: <%= wrongAnswerCount %> , Questions: <%= wrongAnswers %></td>
+                    </tr>
+                    <tr>
+                        <td>Blank Answer</td>
+                        <td>Count: <%= blankAnswerCount %> , Questions: <%= blankAnswers %></td>
+                    </tr>
+                    <tr>
+                        <td>Answers</td>
+                        <td><%= answers %></td>
+                    </tr>
+
+
+                </tbody>
+             </table>
+
+            <button class="btn btn-danger" type="button" id="btn-backToHome">Home</button>
+        </div>
+    </div>
+</div>

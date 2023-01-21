@@ -11,6 +11,7 @@ function($, _, Backbone, TakenExamListItemTemplate) {
         model: undefined,
         tagName: 'tr',
         events: {
+            "click #btn-examDetails": "examDetails"
         },
 
         initialize: function (options) {
@@ -23,6 +24,11 @@ function($, _, Backbone, TakenExamListItemTemplate) {
         render: function () {
             this.$el.html(this.template(this.model));
             return this;
+        },
+
+        examDetails: function(e) {
+            Backbone.history.navigate('student/' + this.studentId + '/examDetail/' + this.model.id, {trigger: true});
+            e.preventDefault();
         }
     });
 

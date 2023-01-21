@@ -57,6 +57,7 @@ function($, _, Backbone, StudentLoginTemplate, Properties) {
                     Backbone.history.navigate('#student/' + response.id, {trigger: true});
                 }
             })
+            e.preventDefault();
         },
 
         registerStudent: function(e) {
@@ -95,6 +96,7 @@ function($, _, Backbone, StudentLoginTemplate, Properties) {
                     $('#txt-register-pass').val('');
                 }
             })
+            e.preventDefault();
 
 
         }

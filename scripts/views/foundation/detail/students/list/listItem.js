@@ -27,8 +27,8 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
         },
         
         editStudent: function(e) {
-            document.cookie = this.apiKey;
             Backbone.history.navigate('#foundation/editStudent/' + this.model.id, { trigger: true });
+            e.preventDefault();
         }, 
         
         deleteStudent: function(e) {

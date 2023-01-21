@@ -11,9 +11,10 @@ function($, _, Backbone, ExamLoginListItemTemplate) {
         model: undefined,
         tagName: 'tr',
         events: {
+            "click #btn-examDetails": "examDetails"
         },
 
-        initialize: function () {
+        initialize: function (options) {
             this.template = _.template(ExamLoginListItemTemplate);
             return this;
         },
@@ -21,6 +22,11 @@ function($, _, Backbone, ExamLoginListItemTemplate) {
         render: function () {
             this.$el.html(this.template(this.model));
             return this;
+        },
+
+        examDetails: function(e) {
+            Backbone.history.navigate('foundation/examLoginDetail/' + this.model.id, {trigger: true});
+            e.preventDefault();
         }
     });
 

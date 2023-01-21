@@ -54,11 +54,12 @@ function($, _, Backbone, Properties, StudentUpdateTemplate) {
                 },
                 body: JSON.stringify({'number': number, 'name': name, 'mail': mail, 'password': password})
             }).then(self.backToHome());
+            e.preventDefault();
         },
 
         backToHome: function(e) {
-            document.cookie = this.apiKey;
             Backbone.history.navigate('#foundation/detail', {trigger: true});
+            if (e) e.preventDefault();
         }
     });
 

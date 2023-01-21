@@ -73,6 +73,7 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
                 },
                 body: JSON.stringify({'examId': this.examId, 'studentId': this.studentId, 'answers': answers}),
             }).then(response => response.json()).then(response => Backbone.history.navigate('#student/' + response.studentId, {trigger: true}));
+            e.preventDefault();
         }
     });
 

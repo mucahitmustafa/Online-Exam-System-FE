@@ -47,12 +47,11 @@ function($, _, Backbone, Properties, ExamAddTemplate) {
         },
 
         backToHome: function(e) {
-            document.cookie = this.apiKey;
             Backbone.history.navigate('#foundation/detail', {trigger: true});
+            e.preventDefault();
         },
 
         openEditExamPage(response) {
-            document.cookie = this.apiKey;
             Backbone.history.navigate('#foundation/editExam/' + response.id, {trigger: true});
         }
     });

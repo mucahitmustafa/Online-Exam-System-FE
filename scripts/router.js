@@ -8,8 +8,11 @@ define([
     'views/foundation/detail/exams/add/add',
     'views/foundation/detail/students/update/update',
     'views/foundation/detail/exams/update/update',
+    'views/foundation/detail/exams/statistics/statistics',
     'views/student/home/home',
-    'views/student/exam/exam'
+    'views/student/exam/exam',
+    'views/foundation/detail/examLogins/detail/detail',
+    'views/student/takenExams/detail/detail'
 ],
 function(
     Backbone,
@@ -21,8 +24,11 @@ function(
     AddExamView,
     EditStudentView,
     EditExamView,
+    ExamStatisticsView,
     StudentHomeView,
-    StudentExamView
+    StudentExamView,
+    FoundationExamLoginDetail,
+    StudentExamDetailView
     ) {
 
     var AppRouter = Backbone.Router.extend({
@@ -36,7 +42,10 @@ function(
             'foundation/addExam': 'addExam',
             'foundation/editStudent/:studentId': 'editStudent',
             'foundation/editExam/:examId': 'editExam',
+            'foundation/examStatistics/:examId': 'examStatistics',
+            'foundation/examLoginDetail/:examLoginId': 'foundationExamLoginDetail',
             'student/:id/exam/:examId': 'studentExam',
+            'student/:id/examDetail/:examLoginId': 'studentExamDetail',
             'student/:id': 'studentHome',
             '*actions': 'studentLogin'
         }
@@ -97,14 +106,29 @@ function(
             editExamView.render();
         });
 
-        appRouter.on('route:studentHome', function (id) {
-            var studentHomeView = new StudentHomeView({id: id});
-            studentHomeView.render();
+        appRouter.on('route:examStatistics', function (examId) {
+            var examStatisticsView = new ExamStatisticsView({apiKey: document.cookie, examId: examId});
+            examStatisticsView.render();
+        });
+        
+        appRouter.on('route:foundationExamLoginDetail', function (examLoginId) {
+            var foundationExamLoginDetail = new FoundationExamLoginDetail({apiKey: document.cookie, examLoginId: examLoginId});
+            foundationExamLoginDetail.render();
         });
 
         appRouter.on('route:studentExam', function (id, examId) {
             var editExamView = new StudentExamView({id: id, examId: examId});
             editExamView.render();
+        });
+
+        appRouter.on('route:studentExamDetail', function (id, examLoginId) {
+            var studentExamDetailView = new StudentExamDetailView({apiKey: document.cookie, studentId: id, examLoginId: examLoginId});
+            studentExamDetailView.render();
+        });
+
+        appRouter.on('route:studentHome', function (id) {
+            var studentHomeView = new StudentHomeView({id: id});
+            studentHomeView.render();
         });
 
         Backbone.history.start();

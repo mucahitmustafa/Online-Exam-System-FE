@@ -38,6 +38,7 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
             }).then(() => {
                 this.$el.html("");
             });
+            e.preventDefault();
         }, 
         
         rejectStudent: function(e) {
@@ -52,6 +53,7 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
             }).then(() => {
                 this.$el.html("");
             });
+            e.preventDefault();
         }
     });
 

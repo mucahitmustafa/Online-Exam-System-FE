@@ -44,8 +44,8 @@ function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView) {
         },
 
         newExam: function(e) {
-            document.cookie = this.apiKey;
             Backbone.history.navigate('#foundation/addExam', { trigger: true });
+            e.preventDefault();
         }
 
     });

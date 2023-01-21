@@ -34,6 +34,7 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
             var foundationModel = new FoundationModel();
 
             var onSuccessHandler = function(collection, response, options) {
+                document.cookie = apiKey;
                 var foundationDetailView = new FoundationDetailView({model: collection.attributes, apiKey: apiKey});
                 foundationDetailView.render();
             };
@@ -48,6 +49,7 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
                 error: onErrorHandler,
                 success: onSuccessHandler
             })
+            e.preventDefault();
         }
 
     });
