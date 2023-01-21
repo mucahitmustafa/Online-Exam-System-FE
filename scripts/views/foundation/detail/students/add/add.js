@@ -43,10 +43,12 @@ function($, _, Backbone, Properties, StudentAddTemplate) {
                 },
                 body: JSON.stringify({'number': number, 'name': name, 'mail': mail, 'password': password})
             }).then(self.backToHome());
+            e.preventDefault();
         },
 
         backToHome: function(e) {
-            Backbone.history.navigate('#foundation/' + this.apiKey);
+            document.cookie = this.apiKey;
+            Backbone.history.navigate('#foundation/detail', {trigger: true});
         }
     });
 

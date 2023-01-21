@@ -42,15 +42,18 @@ function($, _, Backbone, Properties, ExamAddTemplate) {
                   'api-key': this.apiKey
                 },
                 body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'questions': []})
-            }).then(self.openEditExamPage());
+            }).then(response => response.json()).then(response => self.openEditExamPage(response));
+            e.preventDefault();
         },
 
         backToHome: function(e) {
-            Backbone.history.navigate('#foundation/' + this.apiKey);
+            document.cookie = this.apiKey;
+            Backbone.history.navigate('#foundation/detail', {trigger: true});
         },
 
-        openEditExamPage() {
-            Backbone.history.navigate('#foundation/' + this.apiKey + '/editExam/' + this.model.id);
+        openEditExamPage(response) {
+            document.cookie = this.apiKey;
+            Backbone.history.navigate('#foundation/editExam/' + response.id, {trigger: true});
         }
     });
 

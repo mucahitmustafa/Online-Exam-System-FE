@@ -27,7 +27,8 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
         },
         
         editStudent: function(e) {
-            Backbone.history.navigate('#foundation/' + this.apiKey + '/editStudent/' + this.model.id);
+            document.cookie = this.apiKey;
+            Backbone.history.navigate('#foundation/editStudent/' + this.model.id, { trigger: true });
         }, 
         
         deleteStudent: function(e) {
@@ -42,6 +43,7 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
             }).then(() => {
                 this.$el.html("");
             });
+            e.preventDefault();
         }
     });
 

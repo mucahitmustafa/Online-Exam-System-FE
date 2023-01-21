@@ -29,7 +29,8 @@ function($, _, Backbone, Properties, ExamListItemTemplate) {
         },
         
         editExam: function(e) {
-            Backbone.history.navigate('#foundation/' + this.apiKey + '/editExam/' + this.model.id);
+            document.cookie = this.apiKey;
+            Backbone.history.navigate('#foundation/editExam/' + this.model.id, { trigger: true });
         }, 
         
         deleteExam: function(e) {

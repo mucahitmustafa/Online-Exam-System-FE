@@ -4,9 +4,10 @@ define([
     'backbone',
     'text!./home.html',
     'properties',
-    '../examList/listItem'
+    '../examList/listItem',
+    '../takenExams/listItem'
 ],
-function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
+function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView, TakenExamListItemView) {
 
     var StudentHomeView = Backbone.View.extend({
 
@@ -34,6 +35,7 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
                 this.model = response;
                 this.$el.html(this.template(this.model));
                 var self = this;
+
                 fetch(Properties.APIAddress + '/exams/byStudent/' + this.model.id, {
                     async: false,
                     method: 'GET',
@@ -47,6 +49,21 @@ function($, _, Backbone, StudentHomeTemplate, Properties, ExamListItemView) {
                         $('.list-exams').append(examListItemView.render().$el);
                     });
                 });
+
+                fetch(Properties.APIAddress + '/examLogins/byStudent/' + this.model.id, {
+                    async: false,
+                    method: 'GET',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                    }
+                }).then(response => response.json()).then(function(response) {
+                    response.map(exam => {
+                        var takenExamListItemView = new TakenExamListItemView({ model: exam, studentId: self.id});
+                        $('.list-takenExams').append(takenExamListItemView.render().$el);
+                    });
+                });
+
             });
 
             return this;

@@ -57,7 +57,8 @@ function($, _, Backbone, Properties, StudentUpdateTemplate) {
         },
 
         backToHome: function(e) {
-            Backbone.history.navigate('#foundation/' + this.apiKey);
+            document.cookie = this.apiKey;
+            Backbone.history.navigate('#foundation/detail', {trigger: true});
         }
     });
 
