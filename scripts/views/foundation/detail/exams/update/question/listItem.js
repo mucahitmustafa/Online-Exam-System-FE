@@ -11,6 +11,7 @@ function($, _, Backbone, Properties, QuestionListItemTemplate) {
 
         tagName: 'li',
         events: {
+            'click #btn-deleteQuestion': 'deleteQuestion'
         },
 
         initialize: function (model) {
@@ -26,6 +27,10 @@ function($, _, Backbone, Properties, QuestionListItemTemplate) {
                 score: this.model.score ? this.model.score : 0
             }));
             return this;
+        },
+
+        deleteQuestion: function (e) {
+            this.$el.html("");
         }
     });
 

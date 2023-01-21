@@ -1,17 +1,21 @@
-<li style="margin-top: 15px;">
-    <h5><%= model.index %>. Question</h5>
-    <input type="text" class="form-control" placeholder="Question Text" aria-label="Question Text" id="txt-question<%= model.index %>" value="<%= model.text %>">
+<li class="question" style="margin-top: 15px;">
+    <div class="row" style="margin-bottom: 10px;">
+        <h5 class="col-md-4 col-lg-4 col-xl-4">Question</h5>
+        <button class="btn btn-danger btn-sm col-md-4 col-lg-4 col-xl-4" type="button" id="btn-deleteQuestion">Delete Question</button>
+    </div>
+
+    <input type="text" class="form-control" placeholder="Question Text" aria-label="Question Text" id="txt-question" value="<%= model.text %>">
 
     <h6 style="margin-top: 5px;">Answers</h6>
-    <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question<%= model.index %>-answerA" value="<%= model.answers[0] %>">
-    <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question<%= model.index %>-answerB" value="<%= model.answers[1] %>">
-    <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question<%= model.index %>-answerC" value="<%= model.answers[2] %>">
-    <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question<%= model.index %>-answerD" value="<%= model.answers[3] %>">
+    <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question-answerA" value="<%= model.answers[0] %>">
+    <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question-answerB" value="<%= model.answers[1] %>">
+    <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question-answerC" value="<%= model.answers[2] %>">
+    <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question-answerD" value="<%= model.answers[3] %>">
 
     <h6 style="margin-top: 5px;">Correct Answer</h6>
-    <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question<%= model.index %>-answerCorrect" value="<%= correctAnswer %>">
+    <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question-answerCorrect" value="<%= correctAnswer %>">
     <h6 style="margin-top: 5px;">Score</h6>
-    <input type="text" class="form-control" placeholder="Score" aria-label="Score" id="txt-question<%= model.index %>-score" value="<%= score %>">
+    <input type="text" class="form-control" placeholder="Score" aria-label="Score" id="txt-question-score" value="<%= score %>">
 </li>
 
 <hr class="hr" style="margin-top: 20px; margin-bottom: 20px;"/>

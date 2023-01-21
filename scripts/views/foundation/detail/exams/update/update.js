@@ -22,12 +22,10 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
             this.template = _.template(ExamUpdateTemplate);
             this.apiKey = options.apiKey;
             this.id = options.id;
-            this.totalQuestions = 0;
             return this;
         },
 
         render: function () {
-            this.totalQuestions = 0;
             this.$el.html("");
 
             fetch(Properties.APIAddress + '/exams/' + this.id, {
@@ -61,32 +59,35 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
         },
 
         addQuestion: function(e) {
-            this.totalQuestions += 1;
-            var question = {'index': this.totalQuestions, 'text': '', 'answers': ['', '', '', ''], 'correctAnswerIndex': 0};
+            var question = {'index': -1, 'text': '', 'answers': ['', '', '', ''], 'correctAnswerIndex': 0};
             let questionListItem = new QuestionListItem(question);
             $('.list-questions').append(questionListItem.render().$el);
             e.preventDefault();
         },
 
         saveExam: function(e) {
+            let index = 1;
+            var questions = [];
+            $(".question").map(function() {
+                let qText = $(this).children('#txt-question').val();
+                let qAnswerA = $(this).children('#txt-question-answerA').val();
+                let qAnswerB = $(this).children('#txt-question-answerB').val();
+                let qAnswerC = $(this).children('#txt-question-answerC').val();
+                let qAnswerD = $(this).children('#txt-question-answerD').val();
+                let qCorrect = $(this).children('#txt-question-answerCorrect').val();
+                let qScore = $(this).children('#txt-question-score').val();
+
+                questions.push(
+                    {'index': index, 'score': qScore, 'text': qText, 'answers': [qAnswerA, qAnswerB, qAnswerC, qAnswerD], 'correctAnswerIndex': ['A', 'B', 'C', 'D'].indexOf(qCorrect)}
+                );
+
+                index += 1;
+                return this.innerHTML;
+            }).get();
+
             var name = $('#txt-name').val();
             var startDate = $('#txt-startDate').val();
             var endDate = $('#txt-endDate').val();
-
-            var questions = []
-            for (let i = 1; i <= this.totalQuestions; i++) {
-                var qText = $('#txt-question' + i).val();
-
-                var qAnswerA = $('#txt-question' + i + '-answerA').val();
-                var qAnswerB = $('#txt-question' + i + '-answerB').val();
-                var qAnswerC = $('#txt-question' + i + '-answerC').val();
-                var qAnswerD = $('#txt-question' + i + '-answerD').val();
-                var qCorrect = $('#txt-question' + i + '-answerCorrect').val();
-                var qScore = $('#txt-question' + i + '-score').val();
-                questions.push(
-                    {'index': i, 'score': qScore, 'text': qText, 'answers': [qAnswerA, qAnswerB, qAnswerC, qAnswerD], 'correctAnswerIndex': ['A', 'B', 'C', 'D'].indexOf(qCorrect)}
-                );
-            }
 
             var self = this;
             fetch(Properties.APIAddress + '/exams/' + this.model.id, {
