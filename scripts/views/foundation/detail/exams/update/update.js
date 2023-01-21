@@ -38,6 +38,7 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
             }).then(response => response.json()).then(response => {
                 this.model = response;
                 this.$el.html(this.template(this.model));
+                $('#alert-fillAlFields').hide();
                 fetch(Properties.APIAddress + '/questions/byExam/' + this.id, {
                     async: false,
                     method: 'GET',
@@ -59,13 +60,14 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
         },
 
         addQuestion: function(e) {
-            var question = {'index': -1, 'text': '', 'answers': ['', '', '', ''], 'correctAnswerIndex': 0};
+            var question = {'text': '', 'answers': ['', '', '', ''], 'correctAnswerIndex': 0};
             let questionListItem = new QuestionListItem(question);
             $('.list-questions').append(questionListItem.render().$el);
             e.preventDefault();
         },
 
         saveExam: function(e) {
+            $('#alert-fillAlFields').hide();
             let index = 1;
             var questions = [];
             $(".question").map(function() {
@@ -76,6 +78,7 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
                 let qAnswerD = $(this).children('#txt-question-answerD').val();
                 let qCorrect = $(this).children('#txt-question-answerCorrect').val();
                 let qScore = $(this).children('#txt-question-score').val();
+                if (qText == "" || (qAnswerA == "" && qAnswerB == "" && qAnswerC == "" && qAnswerD == "") || qCorrect == "" || qScore == "") return;
 
                 questions.push(
                     {'index': index, 'score': qScore, 'text': qText, 'answers': [qAnswerA, qAnswerB, qAnswerC, qAnswerD], 'correctAnswerIndex': ['A', 'B', 'C', 'D'].indexOf(qCorrect)}
@@ -88,6 +91,12 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
             var name = $('#txt-name').val();
             var startDate = $('#txt-startDate').val();
             var endDate = $('#txt-endDate').val();
+
+            if (name == "" || startDate == "" || endDate == "" || questions.length == 0) {
+                $('#alert-fillAlFields').show();
+                e.preventDefault();
+                return;
+            }
 
             var self = this;
             fetch(Properties.APIAddress + '/exams/' + this.model.id, {

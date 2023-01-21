@@ -33,15 +33,22 @@ function($, _, Backbone, Properties, StudentUpdateTemplate) {
             }).then(response => response.json()).then(response => {
                 this.model = response;
                 this.$el.html(this.template(this.model));
+                $('#alert-fillAlFields').hide();
             });
             return this;
         },
 
         saveStudent: function(e) {
+            $('#alert-fillAlFields').hide();
             var number = $('#txt-number').val();
             var name = $('#txt-name').val();
             var mail = $('#txt-mail').val();
             var password = $('#txt-pass').val();
+            if (number == "" || name == "" || mail == "" || password == "") {
+                $('#alert-fillAlFields').show();
+                e.preventDefault();
+                return;
+            }
 
             var self = this;
             fetch(Properties.APIAddress + '/students/' + this.model.id, {

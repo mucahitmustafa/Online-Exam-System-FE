@@ -24,13 +24,20 @@ function($, _, Backbone, Properties, ExamAddTemplate) {
 
         render: function () {
             this.$el.html(this.template());
+            $('#alert-fillAlFields').hide();
             return this;
         },
 
         saveExam: function(e) {
+            $('#alert-fillAlFields').hide();
             var name = $('#txt-name').val();
             var startDate = $('#txt-startDate').val();
             var endDate = $('#txt-endDate').val();
+            if (name == "" || startDate == "" || endDate == "") {
+                $('#alert-fillAlFields').show();
+                e.preventDefault();
+                return;
+            }
 
             var self = this;
             fetch(Properties.APIAddress + '/exams/', {

@@ -6,15 +6,23 @@
 
     <input type="text" class="form-control" placeholder="Question Text" aria-label="Question Text" id="txt-question" value="<%= model.text %>">
 
-    <h6 style="margin-top: 5px;">Answers</h6>
+<h6 style="margin-top: 5px;">Answers</h6>
+    <label for="txt-question-answerA" style="margin-top: 5px;">A</label>
     <input type="text" class="form-control" placeholder="Answer A" aria-label="Answer A" id="txt-question-answerA" value="<%= model.answers[0] %>">
+
+    <label for="txt-question-answerB" style="margin-top: 5px;">B</label>
     <input type="text" class="form-control" placeholder="Answer B" aria-label="Answer B" id="txt-question-answerB" value="<%= model.answers[1] %>">
+
+    <label for="txt-question-answerC" style="margin-top: 5px;">C</label>
     <input type="text" class="form-control" placeholder="Answer C" aria-label="Answer C" id="txt-question-answerC" value="<%= model.answers[2] %>">
+
+    <label for="txt-question-answerD" style="margin-top: 5px;">D</label>
     <input type="text" class="form-control" placeholder="Answer D" aria-label="Answer D" id="txt-question-answerD" value="<%= model.answers[3] %>">
 
-    <h6 style="margin-top: 5px;">Correct Answer</h6>
+
+    <h6 style="margin-top: 10px;">Correct Answer</h6>
     <input type="text" class="form-control" placeholder="Correct Answer" aria-label="Correct Answer" id="txt-question-answerCorrect" value="<%= correctAnswer %>">
-    <h6 style="margin-top: 5px;">Score</h6>
+    <h6 style="margin-top: 10px;">Score</h6>
     <input type="text" class="form-control" placeholder="Score" aria-label="Score" id="txt-question-score" value="<%= score %>">
 </li>
 
