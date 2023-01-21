@@ -44,8 +44,8 @@ function($, _, Backbone, Properties, ExamsPanelTemplate, ExamListItemView) {
         },
 
         newExam: function(e) {
-            Backbone.history.navigate('#foundation/addExam', { trigger: true });
             e.preventDefault();
+            Backbone.history.navigate('#foundation/addExam', { trigger: true });
         }
 
     });

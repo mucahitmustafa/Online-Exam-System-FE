@@ -29,13 +29,13 @@ function($, _, Backbone, Properties, ExamAddTemplate) {
         },
 
         saveExam: function(e) {
+            e.preventDefault();
             $('#alert-fillAlFields').hide();
             var name = $('#txt-name').val();
             var startDate = $('#txt-startDate').val();
             var endDate = $('#txt-endDate').val();
             if (name == "" || startDate == "" || endDate == "") {
                 $('#alert-fillAlFields').show();
-                e.preventDefault();
                 return;
             }
 
@@ -50,12 +50,11 @@ function($, _, Backbone, Properties, ExamAddTemplate) {
                 },
                 body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'questions': []})
             }).then(response => response.json()).then(response => self.openEditExamPage(response));
-            e.preventDefault();
         },
 
         backToHome: function(e) {
-            Backbone.history.navigate('#foundation/detail', {trigger: true});
             e.preventDefault();
+            Backbone.history.navigate('#foundation/detail', {trigger: true});
         },
 
         openEditExamPage(response) {

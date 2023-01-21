@@ -29,6 +29,7 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
         },
 
         loginFoundation: function(e) {
+            e.preventDefault();
             $('#alert-foundationLoginError').hide();
             var apiKey = $('#txt-apiKey').val();
             var foundationModel = new FoundationModel();
@@ -49,7 +50,6 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
                 error: onErrorHandler,
                 success: onSuccessHandler
             })
-            e.preventDefault();
         }
 
     });

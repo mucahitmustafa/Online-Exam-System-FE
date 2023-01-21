@@ -57,6 +57,7 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
         },
 
         endExam: function(e) {
+            e.preventDefault();
             var answers = "";
             this.questions.forEach(qid => {
                 var _answer = document.querySelector('input[name="q' + qid + 'Answers"]:checked');
@@ -73,7 +74,6 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
                 },
                 body: JSON.stringify({'examId': this.examId, 'studentId': this.studentId, 'answers': answers}),
             }).then(response => response.json()).then(response => Backbone.history.navigate('#student/' + response.studentId, {trigger: true}));
-            e.preventDefault();
         }
     });
 

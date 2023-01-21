@@ -15,7 +15,7 @@ function($, _, Backbone, Properties, ExamListItemTemplate) {
         events: {
             "click #btn-editExam": "editExam",
             "click #btn-deleteExam": "deleteExam",
-            "click #btn-examStatistics": "examStatistics",
+            "click #btn-examStatistics": "examStatistics"
         },
 
         initialize: function (options) {
@@ -30,11 +30,12 @@ function($, _, Backbone, Properties, ExamListItemTemplate) {
         },
         
         editExam: function(e) {
-            Backbone.history.navigate('#foundation/editExam/' + this.model.id, { trigger: true });
             e.preventDefault();
+            Backbone.history.navigate('#foundation/editExam/' + this.model.id, { trigger: true });
         }, 
         
         deleteExam: function(e) {
+            e.preventDefault();
             fetch(Properties.APIAddress + '/exams/' + this.model.id, {
                 async: false,
                 method: 'DELETE',
@@ -47,12 +48,11 @@ function($, _, Backbone, Properties, ExamListItemTemplate) {
                 alert("Exam " + this.model.id + " deleted.");
                 this.$el.html("");
             });
-            e.preventDefault();
         },
 
         examStatistics: function(e) {
-            Backbone.history.navigate('#foundation/examStatistics/' + this.model.id, { trigger: true });
             e.preventDefault();
+            Backbone.history.navigate('#foundation/examStatistics/' + this.model.id, { trigger: true });
         }
     });
 

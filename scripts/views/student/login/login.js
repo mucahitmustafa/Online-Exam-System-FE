@@ -33,6 +33,7 @@ function($, _, Backbone, StudentLoginTemplate, Properties) {
         },
 
         loginStudent: function(e) {
+            e.preventDefault();
             $('#alert-studentLoginError').hide();
             var mail = $('#txt-mail').val();
             var password = $('#txt-pass').val();
@@ -57,10 +58,10 @@ function($, _, Backbone, StudentLoginTemplate, Properties) {
                     Backbone.history.navigate('#student/' + response.id, {trigger: true});
                 }
             })
-            e.preventDefault();
         },
 
         registerStudent: function(e) {
+            e.preventDefault();
             $('#alert-studentRegisterResponse').hide();
             $('#alert-studentRegisterError').hide();
             $('#alert-studentAlreadyExistError').hide();
@@ -96,9 +97,6 @@ function($, _, Backbone, StudentLoginTemplate, Properties) {
                     $('#txt-register-pass').val('');
                 }
             })
-            e.preventDefault();
-
-
         }
     });
 

@@ -27,6 +27,7 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
         },
         
         approveStudent: function(e) {
+            e.preventDefault();
             fetch(Properties.APIAddress + '/students/approve/' + this.model.id, {
                 async: false,
                 method: 'POST',
@@ -38,10 +39,10 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
             }).then(() => {
                 this.$el.html("");
             });
-            e.preventDefault();
         }, 
         
         rejectStudent: function(e) {
+            e.preventDefault();
             fetch(Properties.APIAddress + '/students/' + this.model.id, {
                 async: false,
                 method: 'DELETE',
@@ -53,7 +54,6 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
             }).then(() => {
                 this.$el.html("");
             });
-            e.preventDefault();
         }
     });
 

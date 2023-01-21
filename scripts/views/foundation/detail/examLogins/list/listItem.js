@@ -25,8 +25,8 @@ function($, _, Backbone, ExamLoginListItemTemplate) {
         },
 
         examDetails: function(e) {
-            Backbone.history.navigate('foundation/examLoginDetail/' + this.model.id, {trigger: true});
             e.preventDefault();
+            Backbone.history.navigate('foundation/examLoginDetail/' + this.model.id, {trigger: true});
         }
     });
 

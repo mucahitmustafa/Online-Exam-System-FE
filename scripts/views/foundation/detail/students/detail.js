@@ -45,8 +45,8 @@ function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView)
         },
 
         newStudent: function(e) {
-            Backbone.history.navigate('#foundation/addStudent', {trigger: true});
             e.preventDefault();
+            Backbone.history.navigate('#foundation/addStudent', {trigger: true});
         }
     });
 

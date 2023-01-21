@@ -27,11 +27,12 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
         },
         
         editStudent: function(e) {
-            Backbone.history.navigate('#foundation/editStudent/' + this.model.id, { trigger: true });
             e.preventDefault();
+            Backbone.history.navigate('#foundation/editStudent/' + this.model.id, { trigger: true });
         }, 
         
         deleteStudent: function(e) {
+            e.preventDefault();
             fetch(Properties.APIAddress + '/students/' + this.model.id, {
                 async: false,
                 method: 'DELETE',
@@ -43,7 +44,6 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
             }).then(() => {
                 this.$el.html("");
             });
-            e.preventDefault();
         }
     });
 

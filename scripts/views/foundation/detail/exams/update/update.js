@@ -60,13 +60,14 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
         },
 
         addQuestion: function(e) {
+            e.preventDefault();
             var question = {'text': '', 'answers': ['', '', '', ''], 'correctAnswerIndex': 0};
             let questionListItem = new QuestionListItem(question);
             $('.list-questions').append(questionListItem.render().$el);
-            e.preventDefault();
         },
 
         saveExam: function(e) {
+            e.preventDefault();
             $('#alert-fillAlFields').hide();
             let index = 1;
             var questions = [];
@@ -94,7 +95,6 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
 
             if (name == "" || startDate == "" || endDate == "" || questions.length == 0) {
                 $('#alert-fillAlFields').show();
-                e.preventDefault();
                 return;
             }
 
@@ -109,13 +109,12 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
                 },
                 body: JSON.stringify({'name': name, 'startDate': startDate, 'endDate': endDate, 'questions': questions})
             }).then(self.backToHome());
-            e.preventDefault();
             return this;
         },
 
         backToHome: function(e) {
-            Backbone.history.navigate('#foundation/detail', {trigger: true});
             if (e) e.preventDefault();
+            Backbone.history.navigate('#foundation/detail', {trigger: true});
         }
     });
 

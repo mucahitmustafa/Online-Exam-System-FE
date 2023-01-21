@@ -36,8 +36,8 @@ function($, _, Backbone, Properties, ExamLoginDetailTemplate) {
         },
 
         backToHome: function(e) {
-            Backbone.history.navigate('#foundation/detail', {trigger: true});
             e.preventDefault();
+            Backbone.history.navigate('#foundation/detail', {trigger: true});
         }
     });
 

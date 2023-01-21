@@ -28,6 +28,7 @@ function($, _, Backbone, Properties, StudentAddTemplate) {
         },
 
         saveStudent: function(e) {
+            e.preventDefault();
             $('#alert-fillAlFields').hide();
             var number = $('#txt-number').val();
             var name = $('#txt-name').val();
@@ -35,7 +36,6 @@ function($, _, Backbone, Properties, StudentAddTemplate) {
             var password = $('#txt-pass').val();
             if (number == "" || name == "" || mail == "" || password == "") {
                 $('#alert-fillAlFields').show();
-                e.preventDefault();
                 return;
             }
 
@@ -50,12 +50,11 @@ function($, _, Backbone, Properties, StudentAddTemplate) {
                 },
                 body: JSON.stringify({'number': number, 'name': name, 'mail': mail, 'password': password})
             }).then(self.backToHome());
-            e.preventDefault();
         },
 
         backToHome: function(e) {
-            Backbone.history.navigate('#foundation/detail', {trigger: true});
             if (e) e.preventDefault();
+            Backbone.history.navigate('#foundation/detail', {trigger: true});
         }
     });
 
