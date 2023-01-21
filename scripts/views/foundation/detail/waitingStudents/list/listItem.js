@@ -11,8 +11,8 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
 
         tagName: 'tr',
         events: {
-            "click #btn-editStudent": "editStudent",
-            "click #btn-deleteStudent": "deleteStudent"
+            "click #btn-approveStudent": "approveStudent",
+            "click #btn-rejectStudent": "rejectStudent"
         },
 
         initialize: function (options) {
@@ -26,11 +26,21 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
             return this;
         },
         
-        editStudent: function(e) {
-            Backbone.history.navigate('#foundation/' + this.apiKey + '/editStudent/' + this.model.id);
+        approveStudent: function(e) {
+            fetch(Properties.APIAddress + '/students/approve/' + this.model.id, {
+                async: false,
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'api-key': this.apiKey
+                }
+            }).then(() => {
+                this.$el.html("");
+            });
         }, 
         
-        deleteStudent: function(e) {
+        rejectStudent: function(e) {
             fetch(Properties.APIAddress + '/students/' + this.model.id, {
                 async: false,
                 method: 'DELETE',

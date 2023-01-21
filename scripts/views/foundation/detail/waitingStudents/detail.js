@@ -8,11 +8,10 @@ define([
 ],
 function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView) {
 
-    var StudentsPanelView = Backbone.View.extend({
+    var WaitingStudentsPanelView = Backbone.View.extend({
 
         apiKey: undefined,
         events: {
-            "click #btn-newStudent": "newStudent"
         },
 
         initialize: function (options) {
@@ -32,22 +31,18 @@ function($, _, Backbone, Properties, StudentsPanelTemplate, StudentListItemView)
                   'Accept': 'application/json',
                   'Content-Type': 'application/json',
                   'api-key': this.apiKey,
-                  'filter': 'verified#Equal#true'
+                  'filter': 'verified#Equal#false'
                 }
             }).then(response => response.json()).then(function(response) {
                 response.content.map(student => {
                     var studentListItemView = new StudentListItemView({ model: student, apiKey: self.apiKey });
-                    $('.list-students').append(studentListItemView.render().$el);
+                    $('.list-waitingStudents').append(studentListItemView.render().$el);
                 });
             });
 
             return this;
-        },
-
-        newStudent: function(e) {
-            Backbone.history.navigate('#foundation/' + this.apiKey + '/addStudent');
         }
     });
 
-    return StudentsPanelView;
+    return WaitingStudentsPanelView;
 });

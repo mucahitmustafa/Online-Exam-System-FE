@@ -2,7 +2,6 @@ define([
     'backbone',
     'views/student/login/login',
     'views/foundation/login/login',
-    'views/foundation/detail/detail',
     'views/foundation/detail/students/add/add',
     'views/foundation/detail/exams/add/add',
     'views/foundation/detail/students/update/update',
@@ -14,7 +13,6 @@ function(
     Backbone,
     StudentLoginView,
     FoundationLoginView,
-    FoundationDetailView,
     AddStudentView,
     AddExamView,
     EditStudentView,
@@ -33,7 +31,6 @@ function(
             'foundation/:apiKey/addExam': 'addExam',
             'foundation/:apiKey/editStudent/:studentId': 'editStudent',
             'foundation/:apiKey/editExam/:examId': 'editExam',
-            'foundation/:apiKey': 'foundationDetail',
             'student/:id/exam/:examId': 'studentExam',
             'student/:id': 'studentHome',
             '*actions': 'studentLogin'
@@ -52,11 +49,6 @@ function(
         appRouter.on('route:foundationLogin', function () {
             var foundationLoginView = new FoundationLoginView();
             foundationLoginView.render();
-        });
-
-        appRouter.on('route:foundationDetail', function (apiKey) {
-            var foundationDetailView = new FoundationDetailView({apiKey: apiKey});
-            foundationDetailView.render();
         });
 
         appRouter.on('route:addStudent', function (apiKey) {

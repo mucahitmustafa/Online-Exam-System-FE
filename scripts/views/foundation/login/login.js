@@ -3,9 +3,10 @@ define([
     'underscore',
     'backbone',
     'text!./login.html',
-    'models/foundationModel'
+    'models/foundationModel',
+    'views/foundation/detail/detail'
 ],
-function($, _, Backbone, FoundationLoginTemplate, FoundationModel) {
+function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDetailView) {
 
     var FoundationLoginView = Backbone.View.extend({
 
@@ -33,7 +34,8 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel) {
             var foundationModel = new FoundationModel();
 
             var onSuccessHandler = function(collection, response, options) {
-                Backbone.history.navigate('#foundation/' + apiKey);
+                var foundationDetailView = new FoundationDetailView({model: collection.attributes, apiKey: apiKey});
+                foundationDetailView.render();
             };
           
             var onErrorHandler = function(collection, response, options) {

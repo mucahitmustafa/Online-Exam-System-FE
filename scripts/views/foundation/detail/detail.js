@@ -6,9 +6,9 @@ define([
     './students/detail',
     './exams/detail',
     './examLogins/detail',
-    'models/foundationModel'
+    './waitingStudents/detail',
 ],
-function($, _, Backbone, FoundationDetailTemplate, StudentsPanelView, ExamsPanelView, ExamLoginsPanelView, FoundationModel) {
+function($, _, Backbone, FoundationDetailTemplate, StudentsPanelView, ExamsPanelView, ExamLoginsPanelView, WaitingStudentsPanelView) {
 
     var FoundationDetailView = Backbone.View.extend({
 
@@ -18,17 +18,16 @@ function($, _, Backbone, FoundationDetailTemplate, StudentsPanelView, ExamsPanel
 
         initialize: function (options) {
             this.template = _.template(FoundationDetailTemplate);
+            this.model = options.model;
             this.apiKey = options.apiKey;
-            this.model = new FoundationModel();
-            this.model.fetch({
-                async: false,
-                headers: {'api-key': this.apiKey}
-            });
             return this;
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.attributes));
+            this.$el.html(this.template(this.model));
+
+            var waitingStudentsPanelView = new WaitingStudentsPanelView({apiKey: this.apiKey});
+            $('.panel-waitingStudents').append(waitingStudentsPanelView.render().$el);
 
             var studentsPanelView = new StudentsPanelView({apiKey: this.apiKey});
             $('.panel-students').append(studentsPanelView.render().$el);
