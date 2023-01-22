@@ -1,26 +1,35 @@
 <div class="main-content" style="display: flex; justify-content: center; min-height: 100vh; margin-top: -75px;; margin: auto;">
     
     <div class="col-md-4 col-lg-4 col-xl-4" style="margin: auto;">
-        <h3>Student Register</h3>
+        <h3>Student Registration</h3>
         <div id="alert-studentRegisterResponse" class="alert alert-success" role="alert">
             Registration is complete. Once your registration is approved, you can log in to the system.
         </div>
         <div id="alert-studentAlreadyExistError" class="alert alert-warning" role="alert">
-            The entered number or mail is already registered.
+            The entered number or mail is already registered. Or foundation code is not valid.
         </div>
         <div id="alert-studentRegisterError" class="alert alert-danger" role="alert">
             Fill in all fields.
         </div>
           
-        <input type="text" class="form-control" placeholder="Foundation Code" aria-label="Foundation Code" id="txt-register-foundationCode" value="" style="margin-top: 10px;">
-        <input type="text" class="form-control" placeholder="Number" aria-label="Number" id="txt-register-number" value="" style="margin-top: 10px;">
-        <input type="text" class="form-control" placeholder="Name" aria-label="Name" id="txt-register-name" value="" style="margin-top: 10px;">
-        <input type="text" class="form-control" placeholder="Mail" aria-label="Mail" id="txt-register-mail" value="" style="margin-top: 10px;">
-        <input type="text" class="form-control" placeholder="Password" aria-label="Password" id="txt-register-pass" value="" style="margin-top: 10px;">
+        <label for="txt-register-foundationCode">Foundation Code</label>
+        <input type="text" class="form-control" placeholder="Foundation Code" aria-label="Foundation Code" id="txt-register-foundationCode" value="" style="margin-bottom: 10px;">
+
+        <label for="txt-register-number">Number</label>
+        <input type="text" class="form-control" placeholder="Number" aria-label="Number" id="txt-register-number" value="" style="margin-bottom: 10px;">
+
+        <label for="txt-register-name">Name</label>
+        <input type="text" class="form-control" placeholder="Name" aria-label="Name" id="txt-register-name" value="" style="margin-bottom: 10px;">
+
+        <label for="txt-register-mail">Mail</label>
+        <input type="text" class="form-control" placeholder="Mail" aria-label="Mail" id="txt-register-mail" value="" style="margin-bottom: 10px;">
+
+        <label for="txt-register-pass">Password</label>
+        <input type="password" class="form-control" placeholder="Password" aria-label="Password" id="txt-register-pass" value="">
         <button class="btn" type="button" id="btn-studentRegister" style="background-color: #FFC93C; margin-top: 20px;">Register</button>
     </div>
 
-    <div class="d-flex" style="height: 200px; margin: auto;">
+    <div class="d-flex" style="height: 300px; margin: auto;">
         <div class="vr"></div>
       </div>
       
@@ -30,8 +39,11 @@
             Username or password is not valid!
         </div>
           
-        <input type="text" class="form-control" placeholder="Mail" aria-label="Mail" id="txt-mail" value="" style="margin-top: 10px;">
-        <input type="text" class="form-control" placeholder="Password" aria-label="Password" id="txt-pass" value="" style="margin-top: 10px;">
+        <label for="txt-mail">Mail</label>
+        <input type="text" class="form-control" placeholder="Mail" aria-label="Mail" id="txt-mail" value="" style="margin-bottom: 10px;">
+
+        <label for="txt-pass">Password</label>
+        <input type="password" class="form-control" placeholder="Password" aria-label="Password" id="txt-pass" value="">
         <button class="btn" type="button" id="btn-studentLogin" style="background-color: #FFC93C; margin-top: 20px;">Login</button>
     </div>
     
