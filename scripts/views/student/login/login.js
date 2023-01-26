@@ -38,7 +38,16 @@ function($, _, Backbone, StudentLoginTemplate, Properties) {
             var mail = $('#txt-mail').val();
             var password = $('#txt-pass').val();
 
-            if (mail.trim().length == 0 || password.trim().length == 0) {
+            var emptyFields = "";
+            if (mail.trim().length == 0) {
+                emptyFields += "<br>* Mail";
+            }
+            if (password.trim().length == 0) {
+                emptyFields += "<br>* Password";
+            }
+
+            if (emptyFields.trim().length > 0) {
+                $('#alert-studentLoginError').html('Fill in the following fields:' + emptyFields);
                 $('#alert-studentLoginError').show();
                 return;
             }
