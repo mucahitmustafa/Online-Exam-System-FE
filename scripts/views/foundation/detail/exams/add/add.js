@@ -36,13 +36,13 @@ function($, _, Backbone, Properties, ExamAddTemplate) {
             var endDate = $('#txt-endDate').val();
 
             var emptyFields = "";
-            if (name.trim().length == 0) {
+            if (name == undefined || name.trim().length == 0) {
                 emptyFields += "<br>* Name";
             }
-            if (startDate.trim().length == 0) {
+            if (startDate == undefined || startDate.trim().length == 0) {
                 emptyFields += "<br>* Start Date";
             }
-            if (endDate.trim().length == 0) {
+            if (endDate == undefined || endDate.trim().length == 0) {
                 emptyFields += "<br>* End Date";
             }
 
@@ -66,12 +66,14 @@ function($, _, Backbone, Properties, ExamAddTemplate) {
         },
 
         backToHome: function(e) {
+            this.undelegateEvents();
             e.preventDefault();
-            Backbone.history.navigate('#foundation/detail', {trigger: true});
+            Backbone.history.navigate('#foundation/detail', {trigger: true, replace: true});
         },
 
         openEditExamPage(response) {
-            Backbone.history.navigate('#foundation/editExam/' + response.id, {trigger: true});
+            this.undelegateEvents();
+            Backbone.history.navigate('#foundation/editExam/' + response.id, {trigger: true, replace: true});
         }
     });
 

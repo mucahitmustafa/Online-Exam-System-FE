@@ -44,8 +44,9 @@ function($, _, Backbone, Properties, ExamStatisticsTemplate) {
         },
 
         backToHome: function(e) {
+            this.undelegateEvents();
             e.preventDefault();
-            Backbone.history.navigate('#foundation/detail', {trigger: true});
+            Backbone.history.navigate('#foundation/detail', {trigger: true, replace: true});
         }
     });
 

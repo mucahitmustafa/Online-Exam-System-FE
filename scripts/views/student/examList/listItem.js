@@ -28,7 +28,7 @@ function($, _, Backbone, ExamListItemTemplate) {
 
         loginExam: function(e) {
             e.preventDefault();
-            Backbone.history.navigate('#student/' + this.studentId + '/exam/' + this.model.id, {trigger: true});
+            Backbone.history.navigate('#student/' + this.studentId + '/exam/' + this.model.id, {trigger: true, replace: true});
         }
     });
 

@@ -64,7 +64,7 @@ function($, _, Backbone, StudentLoginTemplate, Properties) {
                 if (response.error) {
                     $('#alert-studentLoginError').show();
                 } else {
-                    Backbone.history.navigate('#student/' + response.id, {trigger: true});
+                    Backbone.history.navigate('#student/' + response.id, {trigger: true, replace: true});
                 }
             })
         },

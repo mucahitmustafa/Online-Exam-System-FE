@@ -57,6 +57,7 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
         },
 
         endExam: function(e) {
+            this.undelegateEvents();
             e.preventDefault();
             var answers = "";
             this.questions.forEach(qid => {
@@ -73,7 +74,7 @@ function($, _, Backbone, Properties, ExamTemplate, QuestionView, StudentHomeView
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({'examId': this.examId, 'studentId': this.studentId, 'answers': answers}),
-            }).then(response => response.json()).then(response => Backbone.history.navigate('#student/' + response.studentId, {trigger: true}));
+            }).then(response => response.json()).then(response => Backbone.history.navigate('#student/' + response.studentId, {trigger: true, replace: true}));
         }
     });
 

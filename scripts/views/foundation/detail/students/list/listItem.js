@@ -27,11 +27,13 @@ function($, _, Backbone, Properties, StudentListItemTemplate) {
         },
         
         editStudent: function(e) {
+            this.undelegateEvents();
             e.preventDefault();
-            Backbone.history.navigate('#foundation/editStudent/' + this.model.id, { trigger: true });
+            Backbone.history.navigate('#foundation/editStudent/' + this.model.id, { trigger: true, replace: true });
         }, 
         
         deleteStudent: function(e) {
+            this.undelegateEvents();
             e.preventDefault();
             fetch(Properties.APIAddress + '/students/' + this.model.id, {
                 async: false,

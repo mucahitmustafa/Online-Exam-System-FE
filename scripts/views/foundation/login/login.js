@@ -35,7 +35,7 @@ function($, _, Backbone, FoundationLoginTemplate, FoundationModel, FoundationDet
             var foundationModel = new FoundationModel();
 
             var onSuccessHandler = function(collection, response, options) {
-                document.cookie = apiKey;
+                document.cookie = apiKey.replace("=", "###");
                 var foundationDetailView = new FoundationDetailView({model: collection.attributes, apiKey: apiKey});
                 foundationDetailView.render();
             };

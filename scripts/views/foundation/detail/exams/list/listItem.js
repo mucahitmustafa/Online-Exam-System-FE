@@ -30,8 +30,9 @@ function($, _, Backbone, Properties, ExamListItemTemplate) {
         },
         
         editExam: function(e) {
+            this.undelegateEvents();
             e.preventDefault();
-            Backbone.history.navigate('#foundation/editExam/' + this.model.id, { trigger: true });
+            Backbone.history.navigate('#foundation/editExam/' + this.model.id, { trigger: true, replace: true });
         }, 
         
         deleteExam: function(e) {
@@ -51,8 +52,9 @@ function($, _, Backbone, Properties, ExamListItemTemplate) {
         },
 
         examStatistics: function(e) {
+            this.undelegateEvents();
             e.preventDefault();
-            Backbone.history.navigate('#foundation/examStatistics/' + this.model.id, { trigger: true });
+            Backbone.history.navigate('#foundation/examStatistics/' + this.model.id, { trigger: true, replace: true });
         }
     });
 

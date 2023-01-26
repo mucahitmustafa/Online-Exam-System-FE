@@ -37,7 +37,7 @@ function($, _, Backbone, Properties, ExamLoginDetailTemplate) {
 
         backToHome: function(e) {
             e.preventDefault();
-            Backbone.history.navigate('#student/' + this.model.studentId, {trigger: true});
+            Backbone.history.navigate('#student/' + this.model.studentId, {trigger: true, replace: true});
         }
     });
 

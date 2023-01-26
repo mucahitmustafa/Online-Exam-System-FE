@@ -67,7 +67,7 @@ function(
 
         appRouter.on('route:foundationDetail', function () {
             var foundationModel = new FoundationModel();
-            var apiKey = document.cookie;
+            var apiKey = document.cookie.replace("###", "=");
 
             var onSuccessHandler = function(collection, response, options) {
                 var foundationDetailView = new FoundationDetailView({model: collection.attributes, apiKey: apiKey});
@@ -87,32 +87,32 @@ function(
         });
 
         appRouter.on('route:addStudent', function () {
-            var addStudentExam = new AddStudentView({apiKey: document.cookie});
+            var addStudentExam = new AddStudentView({apiKey: document.cookie.replace("###", "=")});
             addStudentExam.render();
         });
 
         appRouter.on('route:addExam', function () {
-            var addExamView = new AddExamView({apiKey: document.cookie});
+            var addExamView = new AddExamView({apiKey: document.cookie.replace("###", "=")});
             addExamView.render();
         });
 
         appRouter.on('route:editStudent', function (studentId) {
-            var editStudentView = new EditStudentView({apiKey: document.cookie, id: studentId});
+            var editStudentView = new EditStudentView({apiKey: document.cookie.replace("###", "="), id: studentId});
             editStudentView.render();
         });
 
         appRouter.on('route:editExam', function (examId) {
-            var editExamView = new EditExamView({apiKey: document.cookie, id: examId});
+            var editExamView = new EditExamView({apiKey: document.cookie.replace("###", "="), id: examId});
             editExamView.render();
         });
 
         appRouter.on('route:examStatistics', function (examId) {
-            var examStatisticsView = new ExamStatisticsView({apiKey: document.cookie, examId: examId});
+            var examStatisticsView = new ExamStatisticsView({apiKey: document.cookie.replace("###", "="), examId: examId});
             examStatisticsView.render();
         });
         
         appRouter.on('route:foundationExamLoginDetail', function (examLoginId) {
-            var foundationExamLoginDetail = new FoundationExamLoginDetail({apiKey: document.cookie, examLoginId: examLoginId});
+            var foundationExamLoginDetail = new FoundationExamLoginDetail({apiKey: document.cookie.replace("###", "="), examLoginId: examLoginId});
             foundationExamLoginDetail.render();
         });
 
@@ -122,7 +122,7 @@ function(
         });
 
         appRouter.on('route:studentExamDetail', function (id, examLoginId) {
-            var studentExamDetailView = new StudentExamDetailView({apiKey: document.cookie, studentId: id, examLoginId: examLoginId});
+            var studentExamDetailView = new StudentExamDetailView({apiKey: document.cookie.replace("###", "="), studentId: id, examLoginId: examLoginId});
             studentExamDetailView.render();
         });
 

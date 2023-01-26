@@ -27,8 +27,9 @@ function($, _, Backbone, TakenExamListItemTemplate) {
         },
 
         examDetails: function(e) {
+            this.undelegateEvents();
             e.preventDefault();
-            Backbone.history.navigate('student/' + this.studentId + '/examDetail/' + this.model.id, {trigger: true});
+            Backbone.history.navigate('student/' + this.studentId + '/examDetail/' + this.model.id, {trigger: true, replace: true});
         }
     });
 

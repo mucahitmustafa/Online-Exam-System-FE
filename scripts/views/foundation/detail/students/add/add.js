@@ -69,8 +69,9 @@ function($, _, Backbone, Properties, StudentAddTemplate) {
         },
 
         backToHome: function(e) {
+            this.undelegateEvents();
             if (e) e.preventDefault();
-            Backbone.history.navigate('#foundation/detail', {trigger: true});
+            Backbone.history.navigate('#foundation/detail', {trigger: true, replace: true});
         }
     });
 
