@@ -72,7 +72,25 @@ function($, _, Backbone, StudentLoginTemplate, Properties) {
             var mail = $('#txt-register-mail').val();
             var password = $('#txt-register-pass').val();
 
-            if (foundationCode.trim().length == 0 || number.trim().length == 0 || name.trim().length == 0 || mail.trim().length == 0 || password.trim().length == 0) {
+            var emptyFields = "";
+            if (foundationCode.trim().length == 0) {
+                emptyFields += "<br>* Foundation Code";
+            }
+            if (number.trim().length == 0) {
+                emptyFields += "<br>* Number";
+            }
+            if (name.trim().length == 0) {
+                emptyFields += "<br>* Name";
+            }
+            if (mail.trim().length == 0) {
+                emptyFields += "<br>* Mail";
+            }
+            if (password.trim().length == 0) {
+                emptyFields += "<br>* Password";
+            }
+
+            if (emptyFields.trim().length > 0) {
+                $('#alert-studentRegisterError').html('Fill in the following fields:' + emptyFields);
                 $('#alert-studentRegisterError').show();
                 return;
             }
