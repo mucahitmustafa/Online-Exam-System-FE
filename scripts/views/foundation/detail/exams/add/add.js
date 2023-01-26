@@ -34,7 +34,20 @@ function($, _, Backbone, Properties, ExamAddTemplate) {
             var name = $('#txt-name').val();
             var startDate = $('#txt-startDate').val();
             var endDate = $('#txt-endDate').val();
-            if (name == "" || startDate == "" || endDate == "") {
+
+            var emptyFields = "";
+            if (name.trim().length == 0) {
+                emptyFields += "<br>* Name";
+            }
+            if (startDate.trim().length == 0) {
+                emptyFields += "<br>* Start Date";
+            }
+            if (endDate.trim().length == 0) {
+                emptyFields += "<br>* End Date";
+            }
+
+            if (emptyFields.trim().length > 0) {
+                $('#alert-fillAlFields').html('Fill in the following fields:' + emptyFields);
                 $('#alert-fillAlFields').show();
                 return;
             }
