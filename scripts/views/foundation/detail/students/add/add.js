@@ -34,7 +34,23 @@ function($, _, Backbone, Properties, StudentAddTemplate) {
             var name = $('#txt-name').val();
             var mail = $('#txt-mail').val();
             var password = $('#txt-pass').val();
-            if (number == "" || name == "" || mail == "" || password == "") {
+
+            var emptyFields = "";
+            if (number.trim().length == 0) {
+                emptyFields += "<br>* Number";
+            }
+            if (name.trim().length == 0) {
+                emptyFields += "<br>* Name";
+            }
+            if (mail.trim().length == 0) {
+                emptyFields += "<br>* Mail";
+            }
+            if (password.trim().length == 0) {
+                emptyFields += "<br>* Password";
+            }
+
+            if (emptyFields.trim().length > 0) {
+                $('#alert-fillAlFields').html('Fill in the following fields:' + emptyFields);
                 $('#alert-fillAlFields').show();
                 return;
             }
