@@ -69,6 +69,28 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
         saveExam: function(e) {
             e.preventDefault();
             $('#alert-fillAlFields').hide();
+
+            var name = $('#txt-name').val();
+            var startDate = $('#txt-startDate').val();
+            var endDate = $('#txt-endDate').val();
+
+            var emptyFields = "";
+            if (name.trim().length == 0) {
+                emptyFields += "<br>* Name";
+            }
+            if (startDate.trim().length == 0) {
+                emptyFields += "<br>* Start Date";
+            }
+            if (endDate.trim().length == 0) {
+                emptyFields += "<br>* End Date";
+            }
+
+            if (emptyFields.trim().length > 0) {
+                $('#alert-fillAlFields').html('Fill in the following fields:' + emptyFields);
+                $('#alert-fillAlFields').show();
+                return;
+            }
+
             let index = 1;
             var questions = [];
             $(".question").map(function() {
@@ -88,15 +110,6 @@ function($, _, Backbone, Properties, ExamUpdateTemplate, QuestionListItem) {
                 index += 1;
                 return this.innerHTML;
             }).get();
-
-            var name = $('#txt-name').val();
-            var startDate = $('#txt-startDate').val();
-            var endDate = $('#txt-endDate').val();
-
-            if (name == "" || startDate == "" || endDate == "" || questions.length == 0) {
-                $('#alert-fillAlFields').show();
-                return;
-            }
 
             var self = this;
             fetch(Properties.APIAddress + '/exams/' + this.model.id, {
